@@ -988,8 +988,14 @@
     body.theme-dark .post-menu-item:hover, body.theme-dark .draft-chip-btn:hover, body.theme-dark .composer-tool-btn:hover, body.theme-dark .secondary-submit-btn:hover, body.theme-dark .icon-bell-btn:hover { background:#243041 !important; }
 
   </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
+  <script>
+    window.RANDOM_SUPABASE_URL = "";
+    window.RANDOM_SUPABASE_ANON_KEY = "";
+  </script>
   <header class="topbar">
     <div class="brand">Random</div>
     <div class="search-box">
@@ -1216,12 +1222,50 @@
 
     const seededExploreTopics = []
 
+    const BACKEND_CONFIG = {
+      supabaseUrl: window.RANDOM_SUPABASE_URL || '',
+      supabaseAnonKey: window.RANDOM_SUPABASE_ANON_KEY || ''
+    };
+
+    const hasBackend = Boolean(BACKEND_CONFIG.supabaseUrl && BACKEND_CONFIG.supabaseAnonKey && window.supabase);
+    const supabaseClient = hasBackend ? window.supabase.createClient(BACKEND_CONFIG.supabaseUrl, BACKEND_CONFIG.supabaseAnonKey) : null;
+    let backendReady = false;
+
     function getUsers() {
       return JSON.parse(localStorage.getItem("random_users")) || [];
     }
 
+    function stripUserForBackend(user) {
+      if (!user) return user;
+      const safeUser = { ...user };
+      delete safeUser.password;
+      return safeUser;
+    }
+
+    async function pushUsersToBackend(users) {
+      if (!supabaseClient || !backendReady) return;
+      const payload = users.map(user => ({
+        id: String(user.id),
+        auth_user_id: user.authUserId || null,
+        username: user.username || '',
+        email: user.email || '',
+        bio: user.bio || '',
+        avatar_url: user.avatarUrl || '',
+        following: user.following || [],
+        notifications: user.notifications || [],
+        bookmarks: user.bookmarks || [],
+        settings: user.settings || getUserSettingsData(user),
+        profile_data: stripUserForBackend(user),
+        updated_at: new Date().toISOString()
+      }));
+      if (!payload.length) return;
+      const { error } = await supabaseClient.from('profiles').upsert(payload, { onConflict: 'id' });
+      if (error) console.error('profiles upsert failed', error);
+    }
+
     function saveUsers(users) {
       localStorage.setItem("random_users", JSON.stringify(users));
+      pushUsersToBackend(users);
     }
 
     function getPosts() {
@@ -1229,8 +1273,27 @@
       return posts.filter(post => !post.system);
     }
 
+    async function pushPostsToBackend(posts) {
+      if (!supabaseClient || !backendReady) return;
+      const payload = posts.filter(post => !post.system).map(post => ({
+        id: String(post.id),
+        user_id: String(post.userId),
+        content: post.content || '',
+        image_url: post.imageUrl || '',
+        hashtags: post.hashtags || [],
+        category: post.category || 'general',
+        created_at_ms: Number(post.createdAt) || Date.now(),
+        updated_at: new Date().toISOString(),
+        post_data: post
+      }));
+      if (!payload.length) return;
+      const { error } = await supabaseClient.from('posts').upsert(payload, { onConflict: 'id' });
+      if (error) console.error('posts upsert failed', error);
+    }
+
     function savePosts(posts) {
       localStorage.setItem("random_posts", JSON.stringify(posts));
+      pushPostsToBackend(posts);
     }
 
     function getCurrentUser() {
@@ -1241,8 +1304,63 @@
       localStorage.setItem("random_current_user", JSON.stringify(user));
     }
 
+    async function signOutBackend() {
+      if (!supabaseClient) return;
+      await supabaseClient.auth.signOut();
+    }
+
     function clearCurrentUser() {
       localStorage.removeItem("random_current_user");
+      signOutBackend();
+    }
+
+    async function loadBackendState() {
+      if (!supabaseClient) return;
+      const [{ data: profileRows, error: usersError }, { data: postRows, error: postsError }] = await Promise.all([
+        supabaseClient.from('profiles').select('*').order('updated_at', { ascending: false }),
+        supabaseClient.from('posts').select('*').order('created_at_ms', { ascending: false })
+      ]);
+      if (usersError) console.error(usersError);
+      if (postsError) console.error(postsError);
+      if (Array.isArray(profileRows)) {
+        const users = profileRows.map(row => {
+          const base = row.profile_data || {};
+          return {
+            ...base,
+            id: Number(row.id) || row.id,
+            authUserId: row.auth_user_id || base.authUserId || null,
+            username: row.username || base.username || '',
+            email: row.email || base.email || '',
+            bio: row.bio || base.bio || '',
+            avatarUrl: row.avatar_url || base.avatarUrl || '',
+            following: row.following || base.following || [],
+            notifications: row.notifications || base.notifications || [],
+            bookmarks: row.bookmarks || base.bookmarks || [],
+            settings: row.settings || base.settings || getUserSettingsData(base)
+          };
+        });
+        localStorage.setItem('random_users', JSON.stringify(users));
+      }
+      if (Array.isArray(postRows)) {
+        const posts = postRows.map(row => ({ ...(row.post_data || {}), id: Number(row.id) || row.id, userId: Number(row.user_id) || row.user_id, imageUrl: row.image_url || (row.post_data || {}).imageUrl || '', hashtags: row.hashtags || (row.post_data || {}).hashtags || [], category: row.category || (row.post_data || {}).category || 'general', createdAt: Number(row.created_at_ms) || (row.post_data || {}).createdAt || Date.now() }));
+        localStorage.setItem('random_posts', JSON.stringify(posts));
+      }
+      backendReady = true;
+    }
+
+    async function restoreBackendSession() {
+      if (!supabaseClient) return;
+      const { data, error } = await supabaseClient.auth.getUser();
+      if (error || !data || !data.user) return;
+      const authId = data.user.id;
+      const users = getUsers();
+      const match = users.find(user => user.authUserId === authId || user.email === data.user.email);
+      if (match) {
+        match.authUserId = authId;
+        saveUsers(users);
+        currentUser = { id: match.id, username: match.username, email: match.email, bio: match.bio || '', following: match.following || [], notifications: match.notifications || [], avatarUrl: match.avatarUrl || '', settings: match.settings || getUserSettingsData(match), authUserId: authId };
+        saveCurrentUser(currentUser);
+      }
     }
 
     function makeId() {
@@ -2493,7 +2611,7 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
     });
 
 
-    document.getElementById('registerForm').addEventListener('submit', function(e) {
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       clearStatusMessages();
       const username = document.getElementById('registerUsername').value.trim();
@@ -2509,50 +2627,88 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
         setStatus('registerStatus', 'Email already exists.', true);
         return;
       }
-      const newUser = {
-        id: makeId(),
-        username,
-        email,
-        password,
-        bio: '',
-        following: [],
-        notifications: [],
-        avatarUrl: ''
-      };
-      users.push(newUser);
-      saveUsers(users);
-      currentUser = { id: newUser.id, username: newUser.username, email: newUser.email, bio: '', following: [], notifications: [], avatarUrl: '', settings: getUserSettingsData(newUser) };
-      saveCurrentUser(currentUser);
-      updateAccountUI(currentUser);
-      closeModal('registerModal');
-      renderAll();
+      try {
+        let authUserId = null;
+        if (supabaseClient) {
+          const { data, error } = await supabaseClient.auth.signUp({ email, password });
+          if (error) throw error;
+          authUserId = data.user ? data.user.id : null;
+        }
+        const newUser = {
+          id: makeId(),
+          authUserId,
+          username,
+          email,
+          bio: '',
+          following: [],
+          notifications: [],
+          avatarUrl: ''
+        };
+        users.push(newUser);
+        saveUsers(users);
+        currentUser = { id: newUser.id, username: newUser.username, email: newUser.email, bio: '', following: [], notifications: [], avatarUrl: '', settings: getUserSettingsData(newUser), authUserId };
+        saveCurrentUser(currentUser);
+        updateAccountUI(currentUser);
+        closeModal('registerModal');
+        renderAll();
+      } catch (error) {
+        console.error(error);
+        setStatus('registerStatus', error.message || 'Could not create account.', true);
+      }
     });
 
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       clearStatusMessages();
       const email = document.getElementById('loginEmail').value.trim().toLowerCase();
       const password = document.getElementById('loginPassword').value;
-      const users = getUsers();
-      const user = users.find(u => u.email === email && u.password === password);
-      if (!user) {
-        setStatus('loginStatus', 'Invalid email or password.', true);
-        return;
+      try {
+        if (supabaseClient) {
+          const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+          if (error) throw error;
+          const authId = data.user ? data.user.id : null;
+          await loadBackendState();
+          const users = getUsers();
+          let user = users.find(u => u.authUserId === authId || u.email === email);
+          if (user && !user.authUserId) {
+            user.authUserId = authId;
+            saveUsers(users);
+          }
+          if (!user) throw new Error('Account profile not found.');
+          currentUser = {
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            bio: user.bio || '',
+            following: user.following || [],
+            notifications: user.notifications || [],
+            avatarUrl: user.avatarUrl || '',
+            settings: user.settings || getUserSettingsData(user),
+            authUserId: user.authUserId || authId
+          };
+        } else {
+          const users = getUsers();
+          const user = users.find(u => u.email === email && u.password === password);
+          if (!user) throw new Error('Invalid email or password.');
+          currentUser = {
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            bio: user.bio || '',
+            following: user.following || [],
+            notifications: user.notifications || [],
+            avatarUrl: user.avatarUrl || '',
+            settings: user.settings || getUserSettingsData(user)
+          };
+        }
+        saveCurrentUser(currentUser);
+        updateAccountUI(currentUser);
+        closeModal('loginModal');
+        renderAll();
+      } catch (error) {
+        console.error(error);
+        setStatus('loginStatus', error.message || 'Invalid email or password.', true);
       }
-      currentUser = {
-        id: user.id,
-        username: user.username,
-        email: user.email,
-        bio: user.bio || '',
-        following: user.following || [],
-        notifications: user.notifications || [],
-        avatarUrl: user.avatarUrl || '',
-        settings: user.settings || getUserSettingsData(user)
-      };
-      saveCurrentUser(currentUser);
-      updateAccountUI(currentUser);
-      closeModal('loginModal');
-      renderAll();
     });
 
     document.getElementById('logoutBtn').addEventListener('click', function() {
@@ -3031,7 +3187,21 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       else if (media.addListener) media.addListener(() => applyTheme());
     }
 
-    renderAll();
+    async function bootApp() {
+      try {
+        if (supabaseClient) {
+          await loadBackendState();
+          await restoreBackendSession();
+        } else {
+          backendReady = true;
+        }
+      } catch (error) {
+        console.error('Boot failed', error);
+      }
+      renderAll();
+    }
+
+    bootApp();
   </script>
 </body>
 </html>
