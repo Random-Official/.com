@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Random</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #e5e5e5;
+      color: #2b2b2b;
+      min-height: 100vh;
+    }
+
+    .topbar {
+      height: 70px;
+      width: 100%;
+      background: #dcdcdc;
+      border-bottom: 1px solid #c9c9c9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      gap: 16px;
+    }
+
+    .brand {
+      font-size: 28px;
+      font-weight: 700;
+      color: #2f2f2f;
+    }
+
+    .search-box {
+      flex: 1;
+      max-width: 620px;
+      margin: 0 20px;
+    }
+
+    .search-box input {
+      width: 100%;
+      height: 46px;
+      border: none;
+      outline: none;
+      border-radius: 14px;
+      background: #ececec;
+      padding: 0 18px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .top-actions button {
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .login-btn {
+      background: #cfcfcf;
+      color: #222;
+    }
+
+    .register-btn,
+    .logout-btn,
+    .submit-btn,
+    .post-btn,
+    .action-btn,
+    .reply-submit-btn {
+      background: #3a3a3a;
+      color: #f2f2f2;
+    }
+
+    .logout-btn {
+      display: none;
+    }
+
+    .layout {
+      display: flex;
+      min-height: calc(100vh - 70px);
+    }
+
+    .sidebar {
+      width: 280px;
+      background: #e1e1e1;
+      border-right: 1px solid #d0d0d0;
+      padding: 20px 18px;
+    }
+
+    .nav-item {
+      padding: 18px 16px;
+      border-radius: 16px;
+      color: #2f2f2f;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      user-select: none;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      background: #d6d6d6;
+    }
+
+    .post-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 18px;
+      border-radius: 14px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .main-content {
+      flex: 1;
+      background: #e7e7e7;
+      padding: 30px;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .page-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #2b2b2b;
+    }
+
+    .page-subtitle {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    .feed-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #dcdcdc;
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid #cfcfcf;
+    }
+
+    .card p {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #4f4f4f;
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+
+    .post-image {
+      width: 100%;
+      max-height: 260px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin: 12px 0;
+      border: 1px solid #c7c7c7;
+      background: #efefef;
+    }
+
+    .post-meta {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .action-btn {
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .like-btn {
+      background: #bdbdbd;
+      color: #222;
+    }
+
+    .like-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .edit-btn {
+      background: #9f9f9f;
+      color: #fff;
+    }
+
+    .delete-btn {
+      background: #3a3a3a;
+      color: #fff;
+    }
+
+    .reply-box {
+      margin-top: 18px;
+      border-top: 1px solid #c3c3c3;
+      padding-top: 16px;
+    }
+
+    .reply-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #2b2b2b;
+      margin-bottom: 10px;
+    }
+
+    .reply-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .reply-item {
+      background: #e7e7e7;
+      border: 1px solid #cdcdcd;
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .reply-author {
+      font-size: 13px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    .reply-text {
+      font-size: 14px;
+      color: #4b4b4b;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .reply-time {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .reply-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .reply-form textarea {
+      width: 100%;
+      min-height: 80px;
+      border: 1px solid #bcbcbc;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 14px;
+      outline: none;
+      background: #efefef;
+      color: #222;
+      resize: vertical;
+    }
+
+    .reply-submit-btn {
+      align-self: flex-start;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .account-box,
+    .empty-message {
+      background: #dcdcdc;
+      border-radius: 18px;
+      padding: 24px;
+      max-width: 560px;
+      border: 1px solid #cfcfcf;
+      color: #444;
+    }
+
+    .account-box p {
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 460px;
+      background: #dcdcdc;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+      position: relative;
+    }
+
+    .modal h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #2b2b2b;
+    }
+
+    .modal p {
+      color: #555;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #444;
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      border: 1px solid #bcbcbc;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 15px;
+      outline: none;
+      background: #efefef;
+      color: #222;
+      resize: none;
+    }
+
+    .form-group input {
+      height: 46px;
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      height: 48px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .switch-text {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .switch-text button {
+      background: none;
+      border: none;
+      color: #222;
+      font-weight: 700;
+      cursor: pointer;
+      margin-left: 4px;
+    }
+
+    .status-text {
+      font-size: 14px;
+      color: #444;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .search-box {
+        margin: 0 8px;
+      }
+
+      .sidebar {
+        width: 220px;
+      }
+
+      .brand {
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #d0d0d0;
+      }
+
+      .topbar {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 16px;
+      }
+
+      .search-box {
+        order: 3;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Random</div>
+
+    <div class="search-box">
+      <input type="text" placeholder="Explore" />
+    </div>
+
+    <div class="top-actions">
+      <button class="login-btn" id="loginOpenBtn" onclick="openModal('loginModal')">Login</button>
+      <button class="register-btn" id="registerOpenBtn" onclick="openModal('registerModal')">Register</button>
+      <button class="logout-btn" id="logoutBtn">Logout</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="nav-item active" onclick="showPage('forYou', this)">For you</div>
+      <div class="nav-item" onclick="showPage('following', this)">Following</div>
+      <div class="nav-item" onclick="showPage('dashboard', this)">Dashboard</div>
+      <div class="nav-item" onclick="showPage('account', this)">Account</div>
+
+      <button class="post-btn" onclick="openCreatePostModal()">Post</button>
+    </aside>
+
+    <main class="main-content">
+      <section class="page active" id="forYou">
+        <div class="page-title">For you</div>
+        <div class="page-subtitle">Recommended posts and content for you.</div>
+        <div id="postsContainer" class="feed-grid"></div>
+      </section>
+
+      <section class="page" id="following">
+        <div class="page-title">Following</div>
+        <div class="page-subtitle">Posts from people you follow.</div>
+        <div class="feed-grid">
+          <div class="card">
+            <p>Coming soon.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="dashboard">
+        <div class="page-title">Dashboard</div>
+        <div class="page-subtitle">Your stats and activity.</div>
+
+        <div class="feed-grid">
+          <div class="card">
+            <p><strong>Total Posts</strong></p>
+            <p id="totalPosts">0</p>
+          </div>
+
+          <div class="card">
+            <p><strong>Total Likes</strong></p>
+            <p id="totalLikes">0</p>
+          </div>
+
+          <div class="card">
+            <p><strong>Total Followers</strong></p>
+            <p>0</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="account">
+        <div class="page-title">Account</div>
+        <div class="page-subtitle">Manage your profile information.</div>
+
+        <div class="account-box">
+          <p><strong>Username:</strong> <span id="accountUsername">Guest</span></p>
+          <p><strong>Email:</strong> <span id="accountEmail">Not logged in</span></p>
+          <p><strong>Status:</strong> <span id="accountStatus">Logged out</span></p>
+          <p><strong>User ID:</strong> <span id="accountUid">None</span></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal">
+      <button class="close-btn" onclick="closeModal('loginModal')">&times;</button>
+      <h2>Login</h2>
+      <p>Sign in to your account.</p>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="Enter your email" required />
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter your password" required />
+        </div>
+
+        <button type="submit" class="submit-btn">Login</button>
+      </form>
+
+      <div class="switch-text">
+        Don’t have an account?
+        <button type="button" onclick="switchModal('loginModal', 'registerModal')">Register</button>
+      </div>
+
+      <div class="status-text" id="loginStatus"></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal">
+      <button class="close-btn" onclick="closeModal('registerModal')">&times;</button>
+      <h2>Register</h2>
+      <p>Create a new account.</p>
+
+      <form id="registerForm">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="registerUsername" placeholder="Choose a username" required />
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="registerEmail" placeholder="Enter your email" required />
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="registerPassword" placeholder="Create a password" required />
+        </div>
+
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input type="password" id="registerConfirmPassword" placeholder="Confirm your password" required />
+        </div>
+
+        <button type="submit" class="submit-btn">Register</button>
+      </form>
+
+      <div class="switch-text">
+        Already have an account?
+        <button type="button" onclick="switchModal('registerModal', 'loginModal')">Login</button>
+      </div>
+
+      <div class="status-text" id="registerStatus"></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="postModal">
+    <div class="modal">
+      <button class="close-btn" onclick="closeModal('postModal')">&times;</button>
+      <h2 id="postModalTitle">Create Post</h2>
+      <p>Write something and publish it to your For you page.</p>
+
+      <form id="postForm">
+        <div class="form-group">
+          <label>Post Content</label>
+          <textarea id="postContent" placeholder="Write your post here" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Post Image</label>
+          <input type="file" id="postImage" accept="image/*" />
+        </div>
+
+        <button type="submit" class="submit-btn" id="postSubmitBtn">Publish Post</button>
+      </form>
+
+      <div class="status-text" id="postStatus"></div>
+    </div>
+  </div>
+
+  <script>
+    let currentUser = null;
+    let editingPostId = null;
+    let editingPostImageUrl = "";
+
+    function getUsers() {
+      return JSON.parse(localStorage.getItem("random_users")) || [];
+    }
+
+    function saveUsers(users) {
+      localStorage.setItem("random_users", JSON.stringify(users));
+    }
+
+    function getPosts() {
+      return JSON.parse(localStorage.getItem("random_posts")) || [];
+    }
+
+    function savePosts(posts) {
+      localStorage.setItem("random_posts", JSON.stringify(posts));
+    }
+
+    function getCurrentUser() {
+      return JSON.parse(localStorage.getItem("random_current_user"));
+    }
+
+    function saveCurrentUser(user) {
+      localStorage.setItem("random_current_user", JSON.stringify(user));
+    }
+
+    function clearCurrentUser() {
+      localStorage.removeItem("random_current_user");
+    }
+
+    function makeId() {
+      return Date.now() + Math.floor(Math.random() * 100000);
+    }
+
+    function showPage(pageId, clickedItem) {
+      const pages = document.querySelectorAll(".page");
+      const navItems = document.querySelectorAll(".nav-item");
+
+      pages.forEach(page => page.classList.remove("active"));
+      navItems.forEach(item => item.classList.remove("active"));
+
+      document.getElementById(pageId).classList.add("active");
+      clickedItem.classList.add("active");
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.add("active");
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove("active");
+      clearStatusMessages();
+    }
+
+    function switchModal(closeId, openId) {
+      closeModal(closeId);
+      openModal(openId);
+    }
+
+    function clearStatusMessages() {
+      document.getElementById("loginStatus").textContent = "";
+      document.getElementById("registerStatus").textContent = "";
+      document.getElementById("postStatus").textContent = "";
+    }
+
+    function setStatus(id, text, isError = false) {
+      const el = document.getElementById(id);
+      el.textContent = text;
+      el.style.color = isError ? "#b00020" : "#2d5a2d";
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text || "";
+      return div.innerHTML;
+    }
+
+    function updateAccountUI(user) {
+      const loginBtn = document.getElementById("loginOpenBtn");
+      const registerBtn = document.getElementById("registerOpenBtn");
+      const logoutBtn = document.getElementById("logoutBtn");
+
+      if (user) {
+        loginBtn.style.display = "none";
+        registerBtn.style.display = "none";
+        logoutBtn.style.display = "inline-block";
+
+        document.getElementById("accountUsername").textContent = user.username || "No username";
+        document.getElementById("accountEmail").textContent = user.email || "No email";
+        document.getElementById("accountStatus").textContent = "Logged in";
+        document.getElementById("accountUid").textContent = user.id;
+      } else {
+        loginBtn.style.display = "inline-block";
+        registerBtn.style.display = "inline-block";
+        logoutBtn.style.display = "none";
+
+        document.getElementById("accountUsername").textContent = "Guest";
+        document.getElementById("accountEmail").textContent = "Not logged in";
+        document.getElementById("accountStatus").textContent = "Logged out";
+        document.getElementById("accountUid").textContent = "None";
+      }
+    }
+
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        if (!file) {
+          resolve("");
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function buildReplyHtml(reply) {
+      return `
+        <div class="reply-item">
+          <div class="reply-author">${escapeHtml(reply.authorName || "User")}</div>
+          <div class="reply-text">${escapeHtml(reply.text || "")}</div>
+          <div class="reply-time">${escapeHtml(reply.createdAtText || "")}</div>
+        </div>
+      `;
+    }
+
+    function buildPostCard(post) {
+      const isOwner = currentUser && currentUser.id === post.userId;
+      const likeCount = post.likes || 0;
+      const replies = Array.isArray(post.replies) ? post.replies : [];
+      const likedBy = Array.isArray(post.likedBy) ? post.likedBy : [];
+      const alreadyLiked = currentUser ? likedBy.includes(currentUser.id) : false;
+
+      const replyHtml = replies.length
+        ? replies.map(buildReplyHtml).join("")
+        : `<div class="reply-item"><div class="reply-text">No replies yet.</div></div>`;
+
+      const likeDisabled = isOwner || alreadyLiked ? "disabled" : "";
+
+      return `
+        <p>${escapeHtml(post.content)}</p>
+        ${post.imageUrl ? `<img class="post-image" src="${post.imageUrl}" alt="Post image">` : ""}
+        <div class="post-meta">By ${escapeHtml(post.authorName || "Unknown user")}</div>
+        <div class="post-meta">Likes: ${likeCount}</div>
+        <div class="post-actions">
+          <button class="action-btn like-btn" onclick="likePost(${post.id})" ${likeDisabled}>
+            ${isOwner ? "Your Post" : alreadyLiked ? "Liked" : "Like"}
+          </button>
+          ${isOwner ? `<button class="action-btn edit-btn" onclick="editPost(${post.id})">Edit</button>` : ""}
+          ${isOwner ? `<button class="action-btn delete-btn" onclick="deletePost(${post.id})">Delete</button>` : ""}
+        </div>
+        <div class="reply-box">
+          <div class="reply-title">Replies</div>
+          <div class="reply-list">${replyHtml}</div>
+          ${
+            currentUser
+              ? `
+              <div class="reply-form">
+                <textarea id="replyInput-${post.id}" placeholder="Write a reply..."></textarea>
+                <button type="button" class="reply-submit-btn" onclick="submitReply(${post.id})">Reply</button>
+              </div>
+            `
+              : `
+              <div class="reply-item">
+                <div class="reply-text">Login to reply.</div>
+              </div>
+            `
+          }
+        </div>
+      `;
+    }
+
+    function loadPosts() {
+      const container = document.getElementById("postsContainer");
+      const posts = getPosts().sort((a, b) => b.createdAt - a.createdAt);
+
+      container.innerHTML = "";
+
+      if (posts.length === 0) {
+        container.innerHTML = `
+          <div class="empty-message">
+            No posts yet. Click the Post button to create your first post.
+          </div>
+        `;
+        updateDashboard([]);
+        return;
+      }
+
+      posts.forEach((post) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = buildPostCard(post);
+        container.appendChild(card);
+      });
+
+      updateDashboard(posts);
+    }
+
+    function updateDashboard(posts) {
+      document.getElementById("totalPosts").textContent = posts.length;
+      const totalLikes = posts.reduce((sum, post) => sum + (post.likes || 0), 0);
+      document.getElementById("totalLikes").textContent = totalLikes;
+    }
+
+    function likePost(id) {
+      if (!currentUser) {
+        alert("Please login first.");
+        return;
+      }
+
+      const posts = getPosts();
+      const post = posts.find(p => p.id === id);
+
+      if (!post) return;
+
+      if (post.userId === currentUser.id) {
+        alert("You can't like your own post.");
+        return;
+      }
+
+      if (!Array.isArray(post.likedBy)) {
+        post.likedBy = [];
+      }
+
+      if (post.likedBy.includes(currentUser.id)) {
+        return;
+      }
+
+      post.likedBy.push(currentUser.id);
+      post.likes = (post.likes || 0) + 1;
+
+      savePosts(posts);
+      loadPosts();
+    }
+
+    function submitReply(postId) {
+      if (!currentUser) {
+        alert("Please login first.");
+        return;
+      }
+
+      const input = document.getElementById(`replyInput-${postId}`);
+      if (!input) return;
+
+      const text = input.value.trim();
+      if (!text) {
+        alert("Write a reply first.");
+        return;
+      }
+
+      const posts = getPosts();
+      const post = posts.find(p => p.id === postId);
+
+      if (!post) {
+        alert("Post not found.");
+        return;
+      }
+
+      if (!Array.isArray(post.replies)) {
+        post.replies = [];
+      }
+
+      post.replies.push({
+        authorId: currentUser.id,
+        authorName: currentUser.username || currentUser.email || "User",
+        text,
+        createdAtText: new Date().toLocaleString()
+      });
+
+      savePosts(posts);
+      input.value = "";
+      loadPosts();
+    }
+
+    function deletePost(id) {
+      if (!currentUser) {
+        alert("You need to be logged in.");
+        return;
+      }
+
+      const confirmed = confirm("Are you sure you want to delete this post?");
+      if (!confirmed) return;
+
+      const posts = getPosts().filter(post => !(post.id === id && post.userId === currentUser.id));
+      savePosts(posts);
+      loadPosts();
+    }
+
+    function editPost(id) {
+      if (!currentUser) {
+        alert("You need to be logged in.");
+        return;
+      }
+
+      const posts = getPosts();
+      const post = posts.find(p => p.id === id && p.userId === currentUser.id);
+
+      if (!post) return;
+
+      editingPostId = post.id;
+      editingPostImageUrl = post.imageUrl || "";
+      document.getElementById("postModalTitle").textContent = "Edit Post";
+      document.getElementById("postSubmitBtn").textContent = "Save Changes";
+      document.getElementById("postContent").value = post.content || "";
+      document.getElementById("postImage").value = "";
+      openModal("postModal");
+    }
+
+    function openCreatePostModal() {
+      if (!currentUser) {
+        alert("Please login first.");
+        openModal("loginModal");
+        return;
+      }
+
+      editingPostId = null;
+      editingPostImageUrl = "";
+      document.getElementById("postModalTitle").textContent = "Create Post";
+      document.getElementById("postSubmitBtn").textContent = "Publish Post";
+      document.getElementById("postContent").value = "";
+      document.getElementById("postImage").value = "";
+      openModal("postModal");
+    }
+
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      clearStatusMessages();
+
+      const username = document.getElementById("registerUsername").value.trim();
+      const email = document.getElementById("registerEmail").value.trim().toLowerCase();
+      const password = document.getElementById("registerPassword").value;
+      const confirmPassword = document.getElementById("registerConfirmPassword").value;
+
+      if (password !== confirmPassword) {
+        setStatus("registerStatus", "Passwords do not match.", true);
+        return;
+      }
+
+      const users = getUsers();
+      const exists = users.some(user => user.email === email);
+
+      if (exists) {
+        setStatus("registerStatus", "Email already exists.", true);
+        return;
+      }
+
+      const newUser = {
+        id: makeId(),
+        username,
+        email,
+        password
+      };
+
+      users.push(newUser);
+      saveUsers(users);
+      currentUser = { id: newUser.id, username: newUser.username, email: newUser.email };
+      saveCurrentUser(currentUser);
+      updateAccountUI(currentUser);
+      closeModal("registerModal");
+      loadPosts();
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      clearStatusMessages();
+
+      const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+      const password = document.getElementById("loginPassword").value;
+
+      const users = getUsers();
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (!user) {
+        setStatus("loginStatus", "Invalid email or password.", true);
+        return;
+      }
+
+      currentUser = { id: user.id, username: user.username, email: user.email };
+      saveCurrentUser(currentUser);
+      updateAccountUI(currentUser);
+      closeModal("loginModal");
+      loadPosts();
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", function() {
+      currentUser = null;
+      clearCurrentUser();
+      updateAccountUI(null);
+      loadPosts();
+    });
+
+    document.getElementById("postForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      clearStatusMessages();
+
+      if (!currentUser) {
+        setStatus("postStatus", "Please login first.", true);
+        return;
+      }
+
+      const content = document.getElementById("postContent").value.trim();
+      const imageFile = document.getElementById("postImage").files[0];
+
+      if (!content) {
+        setStatus("postStatus", "Please write something.", true);
+        return;
+      }
+
+      try {
+        setStatus("postStatus", "Saving post...");
+
+        let imageUrl = editingPostImageUrl;
+        if (imageFile) {
+          imageUrl = await fileToBase64(imageFile);
+        }
+
+        const posts = getPosts();
+
+        if (editingPostId) {
+          const post = posts.find(p => p.id === editingPostId && p.userId === currentUser.id);
+          if (post) {
+            post.content = content;
+            post.imageUrl = imageUrl;
+            post.edited = true;
+          }
+        } else {
+          posts.push({
+            id: makeId(),
+            content,
+            imageUrl,
+            likes: 0,
+            likedBy: [],
+            replies: [],
+            userId: currentUser.id,
+            authorName: currentUser.username || currentUser.email || "User",
+            authorEmail: currentUser.email || "",
+            createdAt: Date.now()
+          });
+        }
+
+        savePosts(posts);
+
+        document.getElementById("postContent").value = "";
+        document.getElementById("postImage").value = "";
+        editingPostId = null;
+        editingPostImageUrl = "";
+        closeModal("postModal");
+        loadPosts();
+
+        const forYouButton = document.querySelectorAll(".nav-item")[0];
+        showPage("forYou", forYouButton);
+      } catch (error) {
+        console.error(error);
+        setStatus("postStatus", "Could not save post.", true);
+      }
+    });
+
+    window.addEventListener("click", function(e) {
+      ["loginModal", "registerModal", "postModal"].forEach(id => {
+        const modal = document.getElementById(id);
+        if (e.target === modal) {
+          closeModal(id);
+        }
+      });
+    });
+
+    currentUser = getCurrentUser();
+    updateAccountUI(currentUser);
+    loadPosts();
+  </script>
+</body>
+</html>
