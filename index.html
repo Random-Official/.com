@@ -192,244 +192,6 @@
       padding: 30px;
     }
 
-    .right-rail {
-      width: 340px;
-      background: #e7e7e7;
-      border-left: 1px solid #cbcbcb;
-      padding: 18px 14px;
-    }
-
-    .right-rail-sticky {
-      position: sticky;
-      top: 84px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .right-rail-card {
-      background: #f6f6f6;
-      border: 1px solid #d6d6d6;
-      border-radius: 16px;
-      padding: 14px;
-      box-shadow: 0 1px 0 rgba(0,0,0,0.04);
-    }
-
-    .right-rail-card.discord-card {
-      background: #f2f3f5;
-    }
-
-    .right-rail-card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-
-    .right-rail-title {
-      font-size: 12px;
-      font-weight: 800;
-      color: #4e5058;
-      margin-bottom: 4px;
-      letter-spacing: 0.3px;
-      text-transform: uppercase;
-    }
-
-    .right-rail-subtitle {
-      font-size: 13px;
-      color: #666;
-      margin-bottom: 12px;
-      line-height: 1.35;
-    }
-
-    .right-rail-count {
-      font-size: 11px;
-      font-weight: 800;
-      color: #72767d;
-      background: #e7e8ea;
-      border-radius: 999px;
-      padding: 5px 8px;
-      min-width: 24px;
-      text-align: center;
-    }
-
-    .right-rail-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .right-rail-item {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      padding: 10px;
-      border-radius: 12px;
-      background: transparent;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: 0.15s ease;
-    }
-
-    .right-rail-item:hover {
-      background: #ebedef;
-      border-color: #e0e1e5;
-    }
-
-    .right-rail-item .avatar,
-    .right-rail-item .notification-avatar,
-    .right-rail-mini-avatar,
-    .member-avatar-wrap {
-      width: 38px;
-      height: 38px;
-      min-width: 38px;
-      border-radius: 50%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #5865f2;
-      color: #fff;
-      font-weight: 700;
-      position: relative;
-    }
-
-    .right-rail-item .avatar img,
-    .right-rail-mini-avatar img,
-    .member-avatar-wrap img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-    }
-
-    .presence-dot {
-      position: absolute;
-      right: -1px;
-      bottom: -1px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      border: 2px solid #f2f3f5;
-      background: #23a55a;
-    }
-
-    .presence-dot.idle { background: #f0b232; }
-    .presence-dot.offline { background: #80848e; }
-
-    .right-rail-item-body {
-      min-width: 0;
-      flex: 1;
-    }
-
-    .right-rail-item-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: #1f1f1f;
-      line-height: 1.2;
-      margin-bottom: 2px;
-    }
-
-    .right-rail-item-meta {
-      font-size: 12px;
-      color: #707070;
-      margin-bottom: 4px;
-    }
-
-    .right-rail-item-text {
-      font-size: 13px;
-      color: #444;
-      line-height: 1.35;
-      word-break: break-word;
-    }
-
-    .right-rail-empty {
-      font-size: 13px;
-      color: #666;
-      background: #ffffff;
-      border: 1px dashed #d6d6d6;
-      border-radius: 14px;
-      padding: 12px;
-    }
-
-    .right-rail-link {
-      margin-top: 10px;
-      width: 100%;
-      border: none;
-      border-radius: 10px;
-      padding: 10px 12px;
-      background: #5865f2;
-      color: #fff;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .right-rail-link.secondary {
-      background: #404249;
-    }
-
-    .member-group {
-      margin-top: 4px;
-    }
-
-    .member-group + .member-group {
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid #e1e3e8;
-    }
-
-    .member-group-label {
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.2px;
-      color: #72767d;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .active-now-hero {
-      border-radius: 14px;
-      padding: 12px;
-      background: linear-gradient(180deg, rgba(88,101,242,0.12) 0%, rgba(88,101,242,0.04) 100%);
-      border: 1px solid rgba(88,101,242,0.18);
-      margin-bottom: 10px;
-    }
-
-    .active-now-hero strong {
-      display: block;
-      color: #1f1f1f;
-      margin-bottom: 4px;
-      font-size: 15px;
-    }
-
-    .right-rail-mini-stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-      margin-top: 8px;
-      margin-bottom: 10px;
-    }
-
-    .right-rail-stat {
-      border-radius: 12px;
-      background: #ffffff;
-      border: 1px solid #e0e0e0;
-      padding: 10px;
-    }
-
-    .right-rail-stat-value {
-      font-size: 18px;
-      font-weight: 800;
-      color: #1f1f1f;
-    }
-
-    .right-rail-stat-label {
-      font-size: 12px;
-      color: #72767d;
-      margin-top: 2px;
-    }
-
     .page { display: none; }
     .page.active { display: block; }
 
@@ -679,56 +441,25 @@
 
     .reply-box {
       margin-top: 18px;
-      border: 1px solid #23262c;
-      border-radius: 16px;
-      padding: 0;
-      overflow: hidden;
-      background: #313338;
+      border-top: 1px solid #c3c3c3;
+      padding-top: 16px;
     }
 
     .reply-title {
-      font-size: 14px;
-      font-weight: 800;
-      color: #ffffff;
-      padding: 14px 16px;
-      border-bottom: 1px solid #23262c;
-      background: #2b2d31;
-      letter-spacing: 0.2px;
-      margin-bottom: 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: #2b2b2b;
+      margin-bottom: 10px;
     }
 
     .reply-list {
       display: flex;
       flex-direction: column;
-      gap: 0;
-      margin-bottom: 0;
-      background: #313338;
+      gap: 10px;
+      margin-bottom: 14px;
     }
 
-    .reply-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      background: transparent;
-      border: none;
-      border-radius: 0;
-      padding: 12px 16px;
-      transition: background 0.15s ease;
-    }
-
-    .reply-item:hover {
-      background: #2e3035;
-    }
-
-    .reply-item.system-message {
-      justify-content: center;
-      padding: 14px 16px;
-    }
-
-    .reply-item.system-message:hover {
-      background: transparent;
-    }
-
+    .reply-item,
     .notification-item {
       background: #e7e7e7;
       border: 1px solid #cdcdcd;
@@ -736,96 +467,11 @@
       padding: 12px;
     }
 
-    .reply-item.system-message .reply-text {
-      color: #949ba4;
-      font-size: 13px;
-      text-align: center;
-    }
+    .reply-author { font-size: 13px; font-weight: 700; color: #333; margin-bottom: 4px; }
+    .reply-text { font-size: 14px; color: #4b4b4b; white-space: pre-wrap; word-break: break-word; }
+    .reply-time { margin-top: 6px; font-size: 12px; color: #666; }
 
-    .reply-avatar {
-      width: 40px;
-      height: 40px;
-      min-width: 40px;
-      border-radius: 50%;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .reply-avatar .avatar,
-    .reply-avatar img {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    .reply-content {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .reply-meta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 3px;
-    }
-
-    .reply-author {
-      font-size: 15px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 0;
-      line-height: 1.2;
-    }
-
-    .reply-time {
-      margin-top: 0;
-      font-size: 12px;
-      color: #949ba4;
-      line-height: 1.2;
-    }
-
-    .reply-text {
-      font-size: 15px;
-      line-height: 1.45;
-      color: #dbdee1;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-
-    .reply-item-actions {
-      margin-top: 8px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .reply-inline-btn {
-      background: #3a3c43;
-      color: #b5bac1;
-      border: none;
-      border-radius: 6px;
-      padding: 5px 9px;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 700;
-      transition: 0.15s ease;
-    }
-
-    .reply-inline-btn:hover {
-      background: #4a4d55;
-      color: #ffffff;
-    }
-
-    .reply-form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding: 14px 16px 16px;
-      border-top: 1px solid #23262c;
-      background: #2b2d31;
-    }
+    .reply-form { display: flex; flex-direction: column; gap: 10px; }
 
     .reply-form textarea,
     .form-group input,
@@ -834,39 +480,17 @@
     .settings-panel textarea,
     .settings-panel select {
       width: 100%;
-      border: 1px solid #1f2227;
-      border-radius: 10px;
+      border: 1px solid #bcbcbc;
+      border-radius: 12px;
       padding: 12px 14px;
       font-size: 14px;
       outline: none;
-      background: #383a40;
-      color: #dbdee1;
+      background: #efefef;
+      color: #222;
       resize: vertical;
     }
 
-    .reply-form textarea::placeholder,
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: #949ba4;
-    }
-
-    .reply-form textarea { min-height: 72px; }
-
-    .reply-submit-btn {
-      align-self: flex-end;
-      background: #5865f2;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.15s ease;
-    }
-
-    .reply-submit-btn:hover {
-      filter: brightness(1.06);
-    }
+    .reply-form textarea { min-height: 80px; }
 
     .account-box,
     .empty-message,
@@ -1313,10 +937,6 @@
     .status-text { font-size: 14px; color: #444; margin-top: 10px; }
     .hidden { display: none; }
 
-    @media (max-width: 1100px) {
-      .right-rail { display: none; }
-    }
-
     @media (max-width: 900px) {
       .search-box { margin: 0 8px; }
       .sidebar { width: 220px; }
@@ -1328,7 +948,6 @@
       .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #d0d0d0; }
       .topbar { flex-wrap: wrap; height: auto; padding: 16px; }
       .search-box { order: 3; width: 100%; max-width: 100%; margin: 0; }
-      .right-rail { display: none; }
     }
   
     .icon-bell-btn { position: relative; width: 42px; height: 42px; border-radius: 999px; border: 1px solid #d1d5db; background: #fff; cursor: pointer; font-size: 18px; display: none; align-items: center; justify-content: center; }
@@ -1368,162 +987,248 @@
     body.theme-dark .tag-suggestions, body.theme-dark .post-menu { background:#0f1318 !important; }
     body.theme-dark .post-menu-item:hover, body.theme-dark .draft-chip-btn:hover, body.theme-dark .composer-tool-btn:hover, body.theme-dark .secondary-submit-btn:hover, body.theme-dark .icon-bell-btn:hover { background:#243041 !important; }
 
-    body.theme-dark .reply-box {
-      background: #313338 !important;
-      border-color: #23262c !important;
+  
+
+    .notifications-anchor {
+      position: relative;
+      display: flex;
+      align-items: center;
     }
 
-    body.theme-dark .reply-title {
-      background: #2b2d31 !important;
-      border-bottom-color: #23262c !important;
-      color: #ffffff !important;
+    .notifications-dropdown {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      width: 360px;
+      max-height: 440px;
+      overflow-y: auto;
+      display: none;
+      background: #ffffff;
+      border: 1px solid #d1d5db;
+      border-radius: 18px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.16);
+      z-index: 1200;
     }
 
-    body.theme-dark .reply-list {
-      background: #313338 !important;
+    .notifications-dropdown.active {
+      display: block;
     }
 
-    body.theme-dark .reply-item {
-      background: transparent !important;
-      border: none !important;
+    .notifications-dropdown-header {
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 700;
+      border-bottom: 1px solid #e5e7eb;
     }
 
-    body.theme-dark .reply-item:hover {
-      background: #2e3035 !important;
+    .notifications-dropdown-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 16px;
+      cursor: pointer;
+      border-bottom: 1px solid #efefef;
+      transition: 0.2s ease;
     }
 
-    body.theme-dark .reply-item.system-message:hover {
-      background: transparent !important;
+    .notifications-dropdown-item:hover {
+      background: #f6f8fb;
     }
 
-    body.theme-dark .reply-text {
-      color: #dbdee1 !important;
+    .notifications-dropdown-text {
+      font-size: 14px;
+      line-height: 1.45;
+      color: #222;
     }
 
-    body.theme-dark .reply-author {
-      color: #ffffff !important;
+    .notifications-dropdown-time {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 4px;
     }
 
-    body.theme-dark .reply-time {
-      color: #949ba4 !important;
+    .notifications-dropdown-empty {
+      padding: 18px 16px;
+      color: #6b7280;
+      font-size: 14px;
     }
 
-    body.theme-dark .reply-form {
-      background: #2b2d31 !important;
-      border-top-color: #23262c !important;
+    .right-sidebar {
+      width: 360px;
+      background: #e6e6e6;
+      border-left: 1px solid #d0d0d0;
+      padding: 24px 20px;
     }
 
-    body.theme-dark .composer-wrap {
-      background: transparent !important;
-      border: none !important;
+    .right-sidebar-card {
+      background: #f4f4f4;
+      border: 1px solid #dadada;
+      border-radius: 20px;
+      padding: 18px;
+      position: sticky;
+      top: 94px;
     }
 
-    body.theme-dark .reply-form textarea {
-      background: #383a40 !important;
-      color: #dbdee1 !important;
-      border-color: #1f2227 !important;
+    .right-sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
     }
 
-    body.theme-dark .main-content {
-      background: #1e1f22 !important;
+    .right-sidebar-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #222;
     }
 
-    body.theme-dark .post-card-shell,
-    body.theme-dark .card,
-    body.theme-dark .hero-card {
-      background: #2b2d31 !important;
-      border-color: #23262c !important;
+    .right-sidebar-subtitle {
+      font-size: 13px;
+      color: #666;
+      margin-top: 4px;
     }
 
-    body.theme-dark .post-content {
-      color: #dbdee1 !important;
+    .right-sidebar-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 14px;
     }
 
-    body.theme-dark .post-handle,
-    body.theme-dark .post-meta,
-    body.theme-dark .muted {
-      color: #949ba4 !important;
+    .right-sidebar-tab {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      background: #dedede;
+      color: #2e2e2e;
     }
 
-    body.theme-dark .right-rail {
-      background: #232428 !important;
-      border-left-color: #1e1f22 !important;
+    .right-sidebar-tab.active {
+      background: #3b82f6;
+      color: #fff;
     }
 
-    body.theme-dark .right-rail-card,
-    body.theme-dark .right-rail-card.discord-card {
-      background: #2b2d31 !important;
-      border-color: #1e1f22 !important;
-      box-shadow: none !important;
+    .following-right-rail {
+      display: grid;
+      gap: 10px;
     }
 
-    body.theme-dark .right-rail-title {
-      color: #b5bac1 !important;
+    .following-rail-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      cursor: pointer;
+      transition: 0.2s ease;
     }
 
-    body.theme-dark .right-rail-count {
-      color: #dbdee1 !important;
-      background: #1e1f22 !important;
+    .following-rail-item:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
     }
 
-    body.theme-dark .right-rail-subtitle,
-    body.theme-dark .right-rail-item-meta,
-    body.theme-dark .right-rail-empty,
-    body.theme-dark .member-group-label,
-    body.theme-dark .right-rail-stat-label {
-      color: #949ba4 !important;
+    .following-rail-body {
+      min-width: 0;
+      flex: 1;
     }
 
-    body.theme-dark .right-rail-item {
-      background: transparent !important;
-      border-color: transparent !important;
+    .following-rail-name-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
     }
 
-    body.theme-dark .right-rail-item:hover {
-      background: #35373c !important;
-      border-color: #3a3c43 !important;
+    .following-rail-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1f2937;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    body.theme-dark .right-rail-item-title,
-    body.theme-dark .active-now-hero strong,
-    body.theme-dark .right-rail-stat-value {
-      color: #f2f3f5 !important;
+    .following-rail-preview {
+      font-size: 13px;
+      color: #6b7280;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    body.theme-dark .right-rail-item-text {
-      color: #dbdee1 !important;
+    .following-rail-time {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 4px;
     }
 
-    body.theme-dark .right-rail-link {
-      background: #5865f2 !important;
-      color: #fff !important;
+    .rail-blue-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #2563eb;
+      display: inline-block;
+      flex: 0 0 10px;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14);
     }
 
-    body.theme-dark .right-rail-link.secondary {
-      background: #404249 !important;
+    .right-sidebar-empty {
+      padding: 18px 6px;
+      color: #6b7280;
+      font-size: 14px;
     }
 
-    body.theme-dark .presence-dot {
-      border-color: #2b2d31 !important;
+    body.theme-dark .notifications-dropdown,
+    body.theme-dark .right-sidebar-card,
+    body.theme-dark .following-rail-item {
+      background: #111827;
+      border-color: #2b3443;
+      color: #eef2f7;
     }
 
-    body.theme-dark .member-group + .member-group {
-      border-top-color: #3a3c43 !important;
+    body.theme-dark .notifications-dropdown-header,
+    body.theme-dark .notifications-dropdown-item {
+      border-color: #243041;
     }
 
-    body.theme-dark .active-now-hero {
-      background: linear-gradient(180deg, rgba(88,101,242,0.16) 0%, rgba(88,101,242,0.05) 100%) !important;
-      border-color: rgba(88,101,242,0.25) !important;
+    body.theme-dark .notifications-dropdown-item:hover {
+      background: #172030;
     }
 
-    body.theme-dark .right-rail-stat {
-      background: #232428 !important;
-      border-color: #1e1f22 !important;
+    body.theme-dark .notifications-dropdown-text,
+    body.theme-dark .right-sidebar-title,
+    body.theme-dark .following-rail-name {
+      color: #eef2f7;
     }
 
-    body.theme-dark .right-rail-empty {
-      background: #232428 !important;
-      border-color: #3a3c43 !important;
+    body.theme-dark .notifications-dropdown-time,
+    body.theme-dark .right-sidebar-subtitle,
+    body.theme-dark .following-rail-preview,
+    body.theme-dark .following-rail-time,
+    body.theme-dark .notifications-dropdown-empty,
+    body.theme-dark .right-sidebar-empty {
+      color: #94a3b8;
+    }
+
+    body.theme-dark .right-sidebar {
+      background: #0f1724;
+      border-left-color: #243041;
+    }
+
+    body.theme-dark .right-sidebar-tab {
+      background: #1e293b;
+      color: #e2e8f0;
+    }
+
+    body.theme-dark .right-sidebar-tab.active {
+      background: #2563eb;
+      color: #fff;
     }
 
   </style>
@@ -1543,7 +1248,7 @@
     <div class="top-actions">
       <button class="login-btn" id="loginOpenBtn" onclick="openModal('loginModal')">Login</button>
       <button class="register-btn" id="registerOpenBtn" onclick="openModal('registerModal')">Register</button>
-      <button class="icon-bell-btn" id="notificationsBellBtn" onclick="openNotificationsPage()" aria-label="Notifications">🔔<span class="icon-bell-badge" id="notificationsBellBadge">0</span></button>
+      <div class="notifications-anchor"><button class="icon-bell-btn" id="notificationsBellBtn" aria-label="Notifications">🔔<span class="icon-bell-badge" id="notificationsBellBadge">0</span></button><div class="notifications-dropdown" id="notificationsDropdown"><div class="notifications-dropdown-header">Notifications</div><div id="notificationsDropdownList"></div></div></div>
       <button class="logout-btn" id="logoutBtn">Logout</button>
     </div>
   </header>
@@ -1566,7 +1271,7 @@
         <div class="hero-card">
           <div>
             <h2>Welcome back to Random</h2>
-            <p>Post updates, follow people, and keep your feed simple and clean. Posts are public to every account saved in this browser.</p>
+            <p>Post updates, follow people, and keep your feed simple and clean. Posts are public by default, or you can choose followers only when posting.</p>
           </div>
           <button class="action-btn" onclick="openCreatePostModal()">Create post</button>
         </div>
@@ -1639,12 +1344,19 @@
       </section>
     </main>
 
-    <aside class="right-rail">
-      <div class="right-rail-sticky" id="rightRail">
-        <div class="right-rail-card">
-          <div class="right-rail-title">Following</div>
-          <div class="right-rail-subtitle">People you follow will show up here.</div>
+    <aside class="right-sidebar" id="rightSidebar">
+      <div class="right-sidebar-card">
+        <div class="right-sidebar-header">
+          <div>
+            <div class="right-sidebar-title">Following</div>
+            <div class="right-sidebar-subtitle">People you follow and their newest posts.</div>
+          </div>
         </div>
+        <div class="right-sidebar-tabs">
+          <button type="button" class="right-sidebar-tab active" id="followingRailTabAll" onclick="setFollowingRailTab('all', this)">All</button>
+          <button type="button" class="right-sidebar-tab" id="followingRailTabNew" onclick="setFollowingRailTab('new', this)">New posts</button>
+        </div>
+        <div id="followingRightRail" class="following-right-rail"></div>
       </div>
     </aside>
   </div>
@@ -1703,7 +1415,7 @@
     <div class="modal post-modal">
       <button class="close-btn" onclick="closeModal('postModal')">&times;</button>
       <h2 id="postModalTitle">Create Post</h2>
-      <p>Write something, add a photo, choose who can reply, and save drafts before posting.</p>
+      <p>Write something, add a photo, choose who can reply, choose who can see it, and save drafts before posting.</p>
       <form id="postForm">
         <div class="form-group">
           <label>Post Content</label>
@@ -1719,6 +1431,13 @@
               <option value="everyone">Everyone</option>
               <option value="following">People you follow</option>
               <option value="mentioned">Only mentioned people</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin:0; flex:1;">
+            <label for="postAudience">Who can see this post</label>
+            <select id="postAudience">
+              <option value="public">Everyone</option>
+              <option value="followers">Followers only</option>
             </select>
           </div>
           <div class="form-group" style="margin:0; flex:1;">
@@ -1767,6 +1486,7 @@
     let activeSettingsSection = "account";
     let replyOpenState = {};
     let composerNotifyFollowers = true;
+    let shouldNotifyFollowers = true;
 
     const seededExploreTopics = []
 
@@ -2145,6 +1865,21 @@
         votesByUser: {}
       };
     }
+
+    function extractPollFromContent(text) {
+      const poll = parsePollFromContent(text);
+      if (!poll) return null;
+      return {
+        question: poll.question || 'Poll',
+        options: Array.isArray(poll.options) ? poll.options.map((option, index) => ({
+          id: option.id || index + 1,
+          label: option.label || String(option),
+          votes: Number(option.votes) || 0
+        })) : [],
+        votesByUser: poll.votesByUser || {}
+      };
+    }
+
 
     function getPollVoteCount(poll) {
       if (!poll || !Array.isArray(poll.options)) return 0;
@@ -2581,38 +2316,13 @@
     }
 
     function buildReplyHtml(reply, postId) {
-      const authorName = reply.authorName || "User";
-      const replyTarget = '@' + String(authorName).replace(/\s+/g, '').toLowerCase();
-
-      let profile = null;
-
-      if (reply.userId) {
-        const users = getUsers();
-        profile = users.find(user => user.id === reply.userId) || null;
-      }
-
-      const avatarHtml = renderAvatar(profile, authorName, "avatar");
-
+      const replyTarget = '@' + String(reply.authorName || 'user').replace(/\s+/g, '').toLowerCase();
       return `
         <div class="reply-item">
-          <div class="reply-avatar">
-            ${avatarHtml}
-          </div>
-
-          <div class="reply-content">
-            <div class="reply-meta">
-              <div class="reply-author">${escapeHtml(authorName)}</div>
-              <div class="reply-time">${escapeHtml(reply.createdAtText || "")}</div>
-            </div>
-
-            <div class="reply-text">${renderRichText(reply.text || "")}</div>
-
-            ${currentUser ? `
-              <div class="reply-item-actions">
-                <button class="reply-inline-btn" onclick="replyToReply(${postId}, '${replyTarget}')">Send</button>
-              </div>
-            ` : ""}
-          </div>
+          <div class="reply-author">${escapeHtml(reply.authorName || "User")}</div>
+          <div class="reply-text">${renderRichText(reply.text || "")}</div>
+          <div class="reply-time">${escapeHtml(reply.createdAtText || "")}</div>
+          ${currentUser ? `<div class="reply-item-actions"><button class="reply-inline-btn" onclick="replyToReply(${postId}, '${replyTarget}')">Reply back</button></div>` : ''}
         </div>
       `;
     }
@@ -2625,9 +2335,7 @@
       const alreadyLiked = currentUser ? likedBy.includes(currentUser.id) : false;
       const following = currentUser && Array.isArray(currentUser.following) ? currentUser.following.includes(post.userId) : false;
       const repliesOpen = !!replyOpenState[post.id];
-      const replyHtml = replies.length
-        ? replies.map(reply => buildReplyHtml(reply, post.id)).join("")
-        : `<div class="reply-item system-message"><div class="reply-text">No replies yet.</div></div>`;
+      const replyHtml = replies.length ? replies.map(reply => buildReplyHtml(reply, post.id)).join("") : `<div class="reply-item"><div class="reply-text">No replies yet.</div></div>`;
       const likeDisabled = isOwner || alreadyLiked ? "disabled" : "";
       const followButton = !post.system && currentUser && !isOwner ? `<button class="follow-btn" onclick="toggleFollow(${post.userId})">${following ? "Following" : "Follow"}</button>` : "";
       const authorProfile = getPostAuthorProfile(post);
@@ -2687,11 +2395,11 @@
           ${currentUser ? `
             <div class="reply-form">
               <div class="composer-wrap">
-                <textarea id="replyInput-${post.id}" placeholder="Message #replies"></textarea>
+                <textarea id="replyInput-${post.id}" placeholder="Write a reply..."></textarea>
                 <div id="replySuggestions-${post.id}" class="tag-suggestions"></div>
               </div>
-              <button type="button" class="reply-submit-btn" onclick="submitReply(${post.id})">Send</button>
-            </div>` : `<div class="reply-item system-message"><div class="reply-text">Login to reply.</div></div>`}
+              <button type="button" class="reply-submit-btn" onclick="submitReply(${post.id})">Reply</button>
+            </div>` : `<div class="reply-item"><div class="reply-text">Login to reply.</div></div>`}
         </div>
         </div>`}
       `;
@@ -2712,154 +2420,29 @@
       });
     }
 
+    function canUserSeePost(post, viewer = currentUser) {
+      const audience = post.audience || 'public';
+      if (audience === 'public') return true;
+      if (audience === 'followers') {
+        if (!viewer) return false;
+        if (viewer.id === post.userId) return true;
+        const followers = getFollowersOfUser(post.userId);
+        return followers.some(user => user.id === viewer.id);
+      }
+      return true;
+    }
+
     function getFilteredPosts() {
       const query = document.getElementById("globalSearch").value.trim().toLowerCase();
-      const posts = getPosts().sort((a, b) => b.createdAt - a.createdAt);
+      const posts = getPosts()
+        .filter(post => canUserSeePost(post, currentUser))
+        .sort((a, b) => b.createdAt - a.createdAt);
       if (!query) return posts;
       return posts.filter(post =>
         (post.content || '').toLowerCase().includes(query) ||
         (post.authorName || '').toLowerCase().includes(query) ||
         (Array.isArray(post.hashtags) ? post.hashtags.join(' ') : '').toLowerCase().includes(query)
       );
-    }
-
-
-    function truncateText(value, maxLength = 80) {
-      const text = String(value || '').trim();
-      if (text.length <= maxLength) return text;
-      return text.slice(0, maxLength - 1).trimEnd() + '…';
-    }
-
-    function openPageFromRail(pageId) {
-      const navButton = document.querySelector(`.nav-item[data-page="${pageId}"]`);
-      if (navButton) {
-        showPage(pageId, navButton);
-      }
-    }
-
-    function loadRightRail() {
-      const rail = document.getElementById('rightRail');
-      if (!rail) return;
-
-      const users = getUsers();
-      const posts = getPosts().sort((a, b) => b.createdAt - a.createdAt);
-      const followingIds = currentUser && Array.isArray(currentUser.following) ? currentUser.following : [];
-      const followingUsers = users.filter(user => followingIds.includes(user.id));
-      const suggestedUsers = users.filter(user => !currentUser || (user.id !== currentUser.id && !followingIds.includes(user.id))).slice(0, 6);
-      const siteUpdates = posts.slice(0, 5);
-      const memberSource = currentUser ? followingUsers : suggestedUsers;
-      const onlineUsers = memberSource.slice(0, 4);
-      const offlineUsers = memberSource.slice(4, 10);
-      const memberCount = memberSource.length;
-      const activeCount = onlineUsers.length;
-
-      const renderPresenceAvatar = (user, state = 'online') => `
-        <div class="member-avatar-wrap">
-          ${renderAvatar(user, user.username || 'User', 'right-rail-mini-avatar')}
-          <span class="presence-dot ${state === 'offline' ? 'offline' : state === 'idle' ? 'idle' : ''}"></span>
-        </div>
-      `;
-
-      const activeNowHtml = onlineUsers.length
-        ? onlineUsers.map((user, index) => `
-            <div class="right-rail-item" onclick="openUserProfile(${user.id})">
-              ${renderPresenceAvatar(user, index % 3 === 2 ? 'idle' : 'online')}
-              <div class="right-rail-item-body">
-                <div class="right-rail-item-title">${escapeHtml(user.username || 'User')}</div>
-                <div class="right-rail-item-meta">${index % 3 === 2 ? 'Idle' : 'Active now'}</div>
-                <div class="right-rail-item-text">${escapeHtml(truncateText(user.bio || 'Hanging out on the site right now.', 56))}</div>
-              </div>
-            </div>
-          `).join('')
-        : `<div class="right-rail-empty">${currentUser ? 'No one you follow is active right now.' : 'Login to see who is active now.'}</div>`;
-
-      const membersOnlineHtml = onlineUsers.length
-        ? onlineUsers.map((user, index) => `
-            <div class="right-rail-item" onclick="openUserProfile(${user.id})">
-              ${renderPresenceAvatar(user, index % 3 === 2 ? 'idle' : 'online')}
-              <div class="right-rail-item-body">
-                <div class="right-rail-item-title">${escapeHtml(user.username || 'User')}</div>
-                <div class="right-rail-item-meta">${index % 3 === 2 ? 'Idle member' : 'Online member'}</div>
-              </div>
-            </div>
-          `).join('')
-        : `<div class="right-rail-empty">No online members to show yet.</div>`;
-
-      const membersOfflineHtml = offlineUsers.length
-        ? offlineUsers.map(user => `
-            <div class="right-rail-item" onclick="openUserProfile(${user.id})">
-              ${renderPresenceAvatar(user, 'offline')}
-              <div class="right-rail-item-body">
-                <div class="right-rail-item-title">${escapeHtml(user.username || 'User')}</div>
-                <div class="right-rail-item-meta">Offline member</div>
-              </div>
-            </div>
-          `).join('')
-        : '';
-
-      const updatesHtml = siteUpdates.length
-        ? siteUpdates.map(post => `
-            <div class="right-rail-item" onclick="openPageFromRail('home')">
-              <div class="right-rail-mini-avatar">${escapeHtml(initials(post.authorName || 'U'))}</div>
-              <div class="right-rail-item-body">
-                <div class="right-rail-item-title">${escapeHtml(post.authorName || 'User')}</div>
-                <div class="right-rail-item-meta">${escapeHtml(formatTime(post.createdAt))}</div>
-                <div class="right-rail-item-text">${escapeHtml(truncateText(post.content || 'New update posted.', 84))}</div>
-              </div>
-            </div>
-          `).join('')
-        : `<div class="right-rail-empty">No website updates yet.</div>`;
-
-      rail.innerHTML = `
-        <div class="right-rail-card discord-card">
-          <div class="right-rail-card-header">
-            <div class="right-rail-title">Active Now</div>
-            <div class="right-rail-count">${activeCount}</div>
-          </div>
-          <div class="active-now-hero">
-            <strong>${activeCount ? `${activeCount} ${activeCount === 1 ? 'person is' : 'people are'} hanging out right now` : 'It's quiet right now'}</strong>
-            <div class="right-rail-subtitle" style="margin-bottom:0;">${currentUser ? 'People you follow show up here first, like a Discord-style right rail.' : 'Sign in to fill this with people you follow and see who is active.'}</div>
-          </div>
-          <div class="right-rail-list">${activeNowHtml}</div>
-          <button class="right-rail-link" type="button" onclick="openPageFromRail('following')">${currentUser ? 'Open following feed' : 'Open following page'}</button>
-        </div>
-
-        <div class="right-rail-card discord-card">
-          <div class="right-rail-card-header">
-            <div class="right-rail-title">Members</div>
-            <div class="right-rail-count">${memberCount}</div>
-          </div>
-          <div class="right-rail-mini-stats">
-            <div class="right-rail-stat">
-              <div class="right-rail-stat-value">${activeCount}</div>
-              <div class="right-rail-stat-label">Online</div>
-            </div>
-            <div class="right-rail-stat">
-              <div class="right-rail-stat-value">${Math.max(memberCount - activeCount, 0)}</div>
-              <div class="right-rail-stat-label">Offline</div>
-            </div>
-          </div>
-          <div class="member-group">
-            <div class="member-group-label">Online — ${activeCount}</div>
-            <div class="right-rail-list">${membersOnlineHtml}</div>
-          </div>
-          ${membersOfflineHtml ? `
-          <div class="member-group">
-            <div class="member-group-label">Offline — ${Math.max(memberCount - activeCount, 0)}</div>
-            <div class="right-rail-list">${membersOfflineHtml}</div>
-          </div>` : ''}
-        </div>
-
-        <div class="right-rail-card discord-card">
-          <div class="right-rail-card-header">
-            <div class="right-rail-title">Website Updates</div>
-            <div class="right-rail-count">${siteUpdates.length}</div>
-          </div>
-          <div class="right-rail-subtitle">Latest posts and activity across the site.</div>
-          <div class="right-rail-list">${updatesHtml}</div>
-          <button class="right-rail-link secondary" type="button" onclick="openPageFromRail('notifications')">Open notifications</button>
-        </div>
-      `;
     }
 
     function loadPosts() {
@@ -2869,13 +2452,14 @@
       loadExplore();
       loadProfile();
       loadNotifications();
-      loadRightRail();
     }
 
     function loadFollowing() {
-      const posts = getPosts().sort((a, b) => b.createdAt - a.createdAt);
       const followingIds = currentUser && Array.isArray(currentUser.following) ? currentUser.following : [];
-      const followingPosts = posts.filter(post => followingIds.includes(post.userId));
+      const followingPosts = getPosts()
+        .filter(post => followingIds.includes(post.userId))
+        .filter(post => canUserSeePost(post, currentUser))
+        .sort((a, b) => b.createdAt - a.createdAt);
       renderFeed("followingContainer", followingPosts, currentUser ? "Follow some people and their posts will show up here." : "Login to see your following feed.");
     }
 
@@ -3286,7 +2870,8 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       document.getElementById('postSubmitBtn').textContent = 'Save Changes';
       document.getElementById('postContent').value = post.content || '';
       document.getElementById('postImage').value = '';
-      composerNotifyFollowers = draft.notifyFollowers !== false;
+      composerNotifyFollowers = true;
+      shouldNotifyFollowers = composerNotifyFollowers;
       syncNotifyFollowersButton();
       openModal('postModal');
     }
@@ -3303,7 +2888,8 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       document.getElementById('postSubmitBtn').textContent = 'Publish Post';
       document.getElementById('postContent').value = '';
       document.getElementById('postImage').value = '';
-      composerNotifyFollowers = draft.notifyFollowers !== false;
+      composerNotifyFollowers = true;
+      shouldNotifyFollowers = composerNotifyFollowers;
       syncNotifyFollowersButton();
       openModal('postModal');
     }
@@ -3354,6 +2940,7 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
           authUserId,
           username,
           email,
+          password,
           bio: '',
           following: [],
           notifications: [],
@@ -3579,6 +3166,7 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
 
     function toggleNotifyFollowers() {
       composerNotifyFollowers = !composerNotifyFollowers;
+      shouldNotifyFollowers = composerNotifyFollowers;
       syncNotifyFollowersButton();
     }
 
@@ -3617,6 +3205,7 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       const content = document.getElementById('postContent')?.value.trim() || '';
       const imageFile = document.getElementById('postImage')?.files?.[0];
       const replyPermission = document.getElementById('postReplyPermission')?.value || 'everyone';
+      const audience = document.getElementById('postAudience')?.value || 'public';
       let imageUrl = editingPostImageUrl || '';
       if (imageFile) imageUrl = await fileToBase64(imageFile);
       const drafts = getDrafts();
@@ -3625,6 +3214,7 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
         content,
         imageUrl,
         replyPermission,
+        audience,
         notifyFollowers: composerNotifyFollowers,
         updatedAt: Date.now()
       };
@@ -3647,7 +3237,8 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       document.getElementById('postContent').value = draft.content || '';
       document.getElementById('postReplyPermission').value = draft.replyPermission || 'everyone';
       document.getElementById('postImage').value = '';
-      composerNotifyFollowers = draft.notifyFollowers !== false;
+      composerNotifyFollowers = true;
+      shouldNotifyFollowers = composerNotifyFollowers;
       syncNotifyFollowersButton();
       openModal('postModal');
       loadDraftsList();
@@ -3668,7 +3259,9 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       document.getElementById('postContent').value = '';
       document.getElementById('postImage').value = '';
       document.getElementById('postReplyPermission').value = 'everyone';
+      document.getElementById('postAudience').value = 'public';
       composerNotifyFollowers = true;
+      shouldNotifyFollowers = composerNotifyFollowers;
       syncNotifyFollowersButton();
       loadDraftsList();
     }
@@ -3700,8 +3293,10 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       document.getElementById('postSubmitBtn').textContent = 'Save Changes';
       document.getElementById('postContent').value = post.content || '';
       document.getElementById('postReplyPermission').value = post.replyPermission || 'everyone';
+      document.getElementById('postAudience').value = post.audience || 'public';
       document.getElementById('postImage').value = '';
       composerNotifyFollowers = true;
+      shouldNotifyFollowers = composerNotifyFollowers;
       syncNotifyFollowersButton();
       loadDraftsList();
       openModal('postModal');
@@ -3729,15 +3324,14 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       const alreadyLiked = currentUser ? likedBy.includes(currentUser.id) : false;
       const following = currentUser && Array.isArray(currentUser.following) ? currentUser.following.includes(post.userId) : false;
       const repliesOpen = !!replyOpenState[post.id];
-      const replyHtml = replies.length
-        ? replies.map(reply => buildReplyHtml(reply, post.id)).join('')
-        : `<div class="reply-item system-message"><div class="reply-text">No replies yet.</div></div>`;
+      const replyHtml = replies.length ? replies.map(reply => buildReplyHtml(reply, post.id)).join('') : `<div class="reply-item"><div class="reply-text">No replies yet.</div></div>`;
       const likeDisabled = isOwner || alreadyLiked ? 'disabled' : '';
       const followButton = !post.system && currentUser && !isOwner ? `<button class="follow-btn" onclick="toggleFollow(${post.userId})">${following ? 'Following' : 'Follow'}</button>` : '';
       const authorProfile = getPostAuthorProfile(post);
       const displayName = authorProfile?.username || post.authorName || 'Unknown user';
       const handle = authorProfile?.username ? '@' + authorProfile.username.replace(/\s+/g, '').toLowerCase() : (post.userId ? '@' + (post.authorName || 'user').replace(/\s+/g, '').toLowerCase() : (post.category || 'system'));
       const verification = post.userId ? getVerificationBadgeHtml(post.userId) : '';
+      const audienceLabel = post.audience === 'followers' ? 'Followers only' : 'Public';
       return `
         <div class="post-card-shell">
         <div class="post-header">
@@ -3751,7 +3345,7 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
         <div class="post-content">${renderRichText(post.content)}</div>
         ${post.imageUrl ? `<img class="post-image" src="${post.imageUrl}" alt="Post image">` : ''}
         ${buildPollHtml(post)}
-        <div class="post-meta">${post.category ? `${escapeHtml(post.category)}` : 'Post'}${post.hashtags?.length ? ` · ${post.hashtags.map(tag => escapeHtml(tag)).join(' ')}` : ''}</div>
+        <div class="post-meta">${post.category ? `${escapeHtml(post.category)}` : 'Post'} · ${escapeHtml(audienceLabel)}${post.edited ? ' · Edited' : ''}${post.hashtags?.length ? ` · ${post.hashtags.map(tag => escapeHtml(tag)).join(' ')}` : ''}</div>
         ${post.system ? '' : `
         <div class="post-actions">
           <div class="post-actions-left">
@@ -3777,11 +3371,13 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
         <div class="reply-box ${repliesOpen ? '' : 'collapsed'}">
           <div class="reply-title">Replies</div>
           <div class="reply-list">${replyHtml}</div>
-          ${currentUser ? `<div class="reply-form"><div class="composer-wrap"><textarea id="replyInput-${post.id}" placeholder="Message #replies"></textarea><div id="replySuggestions-${post.id}" class="tag-suggestions"></div></div><button type="button" class="reply-submit-btn" onclick="submitReply(${post.id})">Reply</button></div>` : `<div class="reply-item system-message"><div class="reply-text">Login to reply.</div></div>`}
+          ${currentUser ? `<div class="reply-form"><div class="composer-wrap"><textarea id="replyInput-${post.id}" placeholder="Write a reply..."></textarea><div id="replySuggestions-${post.id}" class="tag-suggestions"></div></div><button type="button" class="reply-submit-btn" onclick="submitReply(${post.id})">Reply</button></div>` : `<div class="reply-item"><div class="reply-text">Login to reply.</div></div>`}
         </div>
         </div>`}
       `;
     };
+
+;
 
     loadProfile = function() {
       const users = getUsers();
@@ -3833,10 +3429,11 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       const category = getPostCategory(content);
       const pollData = parsePollFromContent(content);
       const replyPermission = document.getElementById('postReplyPermission').value || 'everyone';
+      const audience = document.getElementById('postAudience').value || 'public';
       const shouldNotifyFollowers = composerNotifyFollowers;
       const replyPermissionLabel = replyPermission === 'everyone' ? 'Everyone can reply' : replyPermission === 'following' ? 'People you follow can reply' : 'Only mentioned people can reply';
-      if (!content) {
-        setStatus('postStatus', 'Please write something.', true);
+      if (!content && !imageFile && !editingPostImageUrl) {
+        setStatus('postStatus', 'Write something or add an image.', true);
         return;
       }
       try {
@@ -3853,6 +3450,7 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
             post.category = category;
             post.replyPermission = replyPermission;
             post.replyPermissionLabel = replyPermissionLabel;
+            post.audience = audience;
             if (pollData) {
               const existingVotes = post.poll && post.poll.votesByUser ? post.poll.votesByUser : {};
               post.poll = {
@@ -3876,7 +3474,7 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
           const newPost = {
             id: makeId(), content, imageUrl, likes: 0, likedBy: [], replies: [], userId: currentUser.id,
             authorName: currentUser.username || currentUser.email || 'User', authorEmail: currentUser.email || '',
-            category, hashtags, createdAt: Date.now(), replyPermission, replyPermissionLabel,
+            category, hashtags, createdAt: Date.now(), replyPermission, replyPermissionLabel, audience,
             poll: pollData ? { question: pollData.question, options: pollData.options, votesByUser: {} } : null
           };
           posts.push(newPost);
@@ -3919,6 +3517,394 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
     }
 
     bootApp();
-  </script>
+  
+
+    let followingRailTab = 'all';
+
+    function getFollowingSeenStorageKey() {
+      return currentUser ? `random_seen_following_posts_${currentUser.id}` : 'random_seen_following_posts_guest';
+    }
+
+    function getSeenFollowingPosts() {
+      try {
+        return JSON.parse(localStorage.getItem(getFollowingSeenStorageKey())) || {};
+      } catch (error) {
+        return {};
+      }
+    }
+
+    function saveSeenFollowingPosts(map) {
+      localStorage.setItem(getFollowingSeenStorageKey(), JSON.stringify(map || {}));
+    }
+
+    function markFollowingPostsSeen(userId, timestamp) {
+      if (!currentUser || !userId) return;
+      const seenMap = getSeenFollowingPosts();
+      seenMap[userId] = Number(timestamp || Date.now());
+      saveSeenFollowingPosts(seenMap);
+    }
+
+    function getPostPreviewText(post) {
+      if (!post) return 'posted something new';
+      const text = String(post.content || '').trim();
+      if (text) return text.split('\n')[0].trim().slice(0, 72);
+      if (post.poll) return 'posted a poll';
+      if (post.imageUrl) return 'posted a photo';
+      return 'posted something new';
+    }
+
+    function getLatestPostByUser(userId) {
+      return getPosts()
+        .filter(post => post.userId === userId)
+        .filter(post => typeof canUserSeePost === 'function' ? canUserSeePost(post, currentUser) : true)
+        .sort((a, b) => Number(b.createdAt || 0) - Number(a.createdAt || 0))[0] || null;
+    }
+
+    function getFollowingRailItems() {
+      if (!currentUser || !Array.isArray(currentUser.following)) return [];
+      const seenMap = getSeenFollowingPosts();
+      return currentUser.following.map(userId => {
+        const user = typeof getUserRecord === 'function' ? getUserRecord(userId) : null;
+        const latestPost = getLatestPostByUser(userId);
+        if (!user || !latestPost) return null;
+        const seenAt = Number(seenMap[userId] || 0);
+        return {
+          user,
+          latestPost,
+          isNew: Number(latestPost.createdAt || 0) > seenAt
+        };
+      }).filter(Boolean).sort((a, b) => Number(b.latestPost.createdAt || 0) - Number(a.latestPost.createdAt || 0));
+    }
+
+    function setFollowingRailTab(tab, button) {
+      followingRailTab = tab === 'new' ? 'new' : 'all';
+      document.querySelectorAll('.right-sidebar-tab').forEach(item => item.classList.remove('active'));
+      if (button) button.classList.add('active');
+      renderFollowingRightRail();
+    }
+
+    function openFollowingUserFromRail(userId) {
+      const latestPost = getLatestPostByUser(userId);
+      if (latestPost) markFollowingPostsSeen(userId, latestPost.createdAt);
+      renderFollowingRightRail();
+      openUserProfile(userId);
+    }
+
+    function renderFollowingRightRail() {
+      const rail = document.getElementById('followingRightRail');
+      if (!rail) return;
+      if (!currentUser) {
+        rail.innerHTML = '<div class="right-sidebar-empty">Login to see who you follow and when they post.</div>';
+        return;
+      }
+      let items = getFollowingRailItems();
+      if (followingRailTab === 'new') items = items.filter(item => item.isNew);
+      if (!items.length) {
+        rail.innerHTML = `<div class="right-sidebar-empty">${followingRailTab === 'new' ? 'No new posts from people you follow right now.' : 'Follow some people and their newest posts will show here.'}</div>`;
+        return;
+      }
+      rail.innerHTML = items.map(item => `
+        <div class="following-rail-item" onclick="openFollowingUserFromRail(${item.user.id})">
+          ${typeof renderAvatar === 'function' ? renderAvatar(item.user, item.user.username || 'User', 'avatar') : `<div class="profile-avatar">${escapeHtml(initials(item.user.username || 'U'))}</div>`}
+          <div class="following-rail-body">
+            <div class="following-rail-name-row">
+              <div class="following-rail-name">${escapeHtml(item.user.username || 'User')}</div>
+              ${item.isNew ? '<span class="rail-blue-dot"></span>' : ''}
+            </div>
+            <div class="following-rail-preview">${escapeHtml(getPostPreviewText(item.latestPost))}</div>
+            <div class="following-rail-time">${escapeHtml(formatTime(item.latestPost.createdAt))}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function parseNotificationActorName(text) {
+      const str = String(text || '');
+      if (str.includes(':')) return str.split(':')[0].trim();
+      const followMatch = str.match(/^(.+?)\s+started following you\.?$/i);
+      if (followMatch) return followMatch[1].trim();
+      const likeMatch = str.match(/^(.+?)\s+liked/i);
+      if (likeMatch) return likeMatch[1].trim();
+      const replyMatch = str.match(/^(.+?)\s+replied/i);
+      if (replyMatch) return replyMatch[1].trim();
+      return '';
+    }
+
+    function findUserByUsernameLoose(name) {
+      const target = String(name || '').trim().toLowerCase();
+      if (!target) return null;
+      return getUsers().find(user => String(user.username || '').trim().toLowerCase() === target) || null;
+    }
+
+    function buildNotificationLabel(item) {
+      const text = String(item?.text || '').trim();
+      if (!text) return 'New notification';
+      return text;
+    }
+
+    function renderNotificationsDropdown() {
+      const list = document.getElementById('notificationsDropdownList');
+      const dropdown = document.getElementById('notificationsDropdown');
+      if (!list || !dropdown) return;
+      if (!currentUser) {
+        list.innerHTML = '<div class="notifications-dropdown-empty">Login to see notifications.</div>';
+        return;
+      }
+      syncCurrentUser();
+      const notifications = Array.isArray(currentUser.notifications) ? currentUser.notifications : [];
+      if (!notifications.length) {
+        list.innerHTML = '<div class="notifications-dropdown-empty">No notifications yet.</div>';
+        return;
+      }
+      list.innerHTML = notifications.map(item => {
+        const actorName = parseNotificationActorName(item.text) || 'Notification';
+        const actor = findUserByUsernameLoose(actorName);
+        const avatarHtml = actor
+          ? (typeof renderAvatar === 'function' ? renderAvatar(actor, actor.username || 'User', 'avatar') : `<div class="notification-avatar">${escapeHtml(initials(actor.username || 'U'))}</div>`)
+          : `<div class="notification-avatar">${escapeHtml(initials(actorName || 'N'))}</div>`;
+        return `
+          <div class="notifications-dropdown-item" onclick="openNotificationFromDropdown(${item.id})">
+            ${avatarHtml}
+            <div>
+              <div class="notifications-dropdown-text">${escapeHtml(buildNotificationLabel(item))}</div>
+              <div class="notifications-dropdown-time">${escapeHtml(formatTime(item.createdAt))}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openNotificationFromDropdown(notificationId) {
+      if (!currentUser) return;
+      syncCurrentUser();
+      const notifications = Array.isArray(currentUser.notifications) ? currentUser.notifications : [];
+      const item = notifications.find(entry => entry.id === notificationId);
+      const dropdown = document.getElementById('notificationsDropdown');
+      if (dropdown) dropdown.classList.remove('active');
+      if (!item) {
+        openNotificationsPage();
+        return;
+      }
+      const actorName = parseNotificationActorName(item.text);
+      const actor = findUserByUsernameLoose(actorName);
+      if (actor) {
+        openUserProfile(actor.id);
+      } else {
+        openNotificationsPage();
+      }
+    }
+
+    function toggleNotificationsDropdown(event) {
+      if (event) event.stopPropagation();
+      const dropdown = document.getElementById('notificationsDropdown');
+      if (!dropdown) return;
+      const shouldOpen = !dropdown.classList.contains('active');
+      document.querySelectorAll('.notifications-dropdown.active').forEach(box => box.classList.remove('active'));
+      if (shouldOpen) {
+        renderNotificationsDropdown();
+        dropdown.classList.add('active');
+      }
+    }
+
+    function buildRichPostNotificationText(post, user) {
+      return `${user.username || user.email || 'User'}: ${getPostPreviewText(post)}`;
+    }
+
+    function loadNotifications() {
+      const container = document.getElementById('notificationsContainer');
+      if (!container) return;
+      if (!currentUser) {
+        container.innerHTML = `<div class="empty-message">Login to see notifications.</div>`;
+        return;
+      }
+      syncCurrentUser();
+      const notifications = Array.isArray(currentUser.notifications) ? currentUser.notifications : [];
+      if (!notifications.length) {
+        container.innerHTML = `<div class="empty-message">No notifications yet.</div>`;
+        return;
+      }
+      container.innerHTML = notifications.map(item => {
+        const actorName = parseNotificationActorName(item.text) || 'Notification';
+        const actor = findUserByUsernameLoose(actorName);
+        const avatarHtml = actor
+          ? (typeof renderAvatar === 'function' ? renderAvatar(actor, actor.username || 'User', 'notification-avatar') : `<div class="notification-avatar">${escapeHtml(initials(actor.username || 'U'))}</div>`)
+          : `<div class="notification-avatar">${escapeHtml(initials(actorName || 'N'))}</div>`;
+        return `
+          <div class="notification-item" style="margin-bottom: 12px;" onclick="openNotificationFromDropdown(${item.id})">
+            ${avatarHtml}
+            <div>
+              <div class="notification-text">${escapeHtml(buildNotificationLabel(item))}</div>
+              <div class="notification-time">${escapeHtml(formatTime(item.createdAt))}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function bindCleanPostFormHandler() {
+      const existing = document.getElementById('postForm');
+      if (!existing || existing.dataset.cleaned === 'true') return;
+      const replacement = existing.cloneNode(true);
+      existing.parentNode.replaceChild(replacement, existing);
+      replacement.dataset.cleaned = 'true';
+      replacement.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        clearStatusMessages();
+        if (!currentUser) {
+          setStatus('postStatus', 'Please login first.', true);
+          return;
+        }
+        try {
+          const content = document.getElementById('postContent').value.trim();
+          const imageFile = document.getElementById('postImage').files[0];
+          const replyPermission = document.getElementById('postReplyPermission').value || 'everyone';
+          const audience = document.getElementById('postAudience').value || 'public';
+          if (!content && !imageFile && !editingPostImageUrl) {
+            setStatus('postStatus', 'Write something or add an image.', true);
+            return;
+          }
+          setStatus('postStatus', 'Saving post...');
+          let imageUrl = editingPostImageUrl || '';
+          if (imageFile) imageUrl = await fileToBase64(imageFile);
+          const hashtags = extractHashtags(content);
+          const category = typeof getPostCategory === 'function' ? getPostCategory(content) : 'trending';
+          const replyPermissionLabel = replyPermission === 'everyone'
+            ? 'Everyone can reply'
+            : replyPermission === 'following'
+              ? 'People you follow can reply'
+              : 'Only mentioned people can reply';
+          const pollData = typeof extractPollFromContent === 'function' ? extractPollFromContent(content) : null;
+          const posts = getPosts();
+          if (editingPostId) {
+            const post = posts.find(p => p.id === editingPostId && p.userId === currentUser.id);
+            if (!post) {
+              setStatus('postStatus', 'Post not found.', true);
+              return;
+            }
+            post.content = content;
+            post.imageUrl = imageUrl;
+            post.hashtags = hashtags;
+            post.category = category;
+            post.replyPermission = replyPermission;
+            post.replyPermissionLabel = replyPermissionLabel;
+            post.audience = audience;
+            post.edited = true;
+            if (pollData && !post.poll) {
+              post.poll = { question: pollData.question, options: pollData.options, votesByUser: {} };
+            }
+          } else {
+            const newPost = {
+              id: makeId(),
+              content,
+              imageUrl,
+              likes: 0,
+              likedBy: [],
+              replies: [],
+              userId: currentUser.id,
+              authorName: currentUser.username || currentUser.email || 'User',
+              authorEmail: currentUser.email || '',
+              category,
+              hashtags,
+              createdAt: Date.now(),
+              replyPermission,
+              replyPermissionLabel,
+              audience,
+              poll: pollData ? { question: pollData.question, options: pollData.options, votesByUser: {} } : null
+            };
+            posts.push(newPost);
+            if (composerNotifyFollowers) {
+              const noticeText = buildRichPostNotificationText(newPost, currentUser);
+              getFollowersOfUser(currentUser.id).forEach(follower => addNotification(follower.id, noticeText, 'post'));
+            }
+            if (typeof notifyMentionedUsers === 'function') {
+              notifyMentionedUsers(content, currentUser.username || 'Someone', 'a post', [currentUser.id]);
+            }
+          }
+          savePosts(posts);
+          if (composerDraftId) deleteComposerDraft(composerDraftId);
+          clearComposerState();
+          closeModal('postModal');
+          renderAll();
+          const homeButton = document.querySelector('.nav-item[data-page="home"]');
+          if (homeButton) showPage('home', homeButton);
+        } catch (error) {
+          console.error(error);
+          setStatus('postStatus', 'Could not save post.', true);
+        }
+      });
+    }
+
+    openCreatePostModal = function() {
+      if (!currentUser) {
+        alert('Please login first.');
+        openModal('loginModal');
+        return;
+      }
+      clearComposerState();
+      openModal('postModal');
+    };
+
+    editPost = function(id) {
+      if (!currentUser) {
+        alert('You need to be logged in.');
+        return;
+      }
+      const posts = getPosts();
+      const post = posts.find(p => p.id === id && p.userId === currentUser.id);
+      if (!post) return;
+      composerDraftId = null;
+      editingPostId = post.id;
+      editingPostImageUrl = post.imageUrl || '';
+      document.getElementById('postModalTitle').textContent = 'Edit Post';
+      document.getElementById('postSubmitBtn').textContent = 'Save Changes';
+      document.getElementById('postContent').value = post.content || '';
+      document.getElementById('postReplyPermission').value = post.replyPermission || 'everyone';
+      document.getElementById('postAudience').value = post.audience || 'public';
+      document.getElementById('postImage').value = '';
+      composerNotifyFollowers = true;
+      shouldNotifyFollowers = composerNotifyFollowers;
+      syncNotifyFollowersButton();
+      loadDraftsList();
+      openModal('postModal');
+    };
+
+    const _baseShowPage = showPage;
+    showPage = function(pageId, clickedItem) {
+      _baseShowPage(pageId, clickedItem);
+      if (pageId === 'following' && currentUser && Array.isArray(currentUser.following)) {
+        currentUser.following.forEach(userId => {
+          const latestPost = getLatestPostByUser(userId);
+          if (latestPost) markFollowingPostsSeen(userId, latestPost.createdAt);
+        });
+        renderFollowingRightRail();
+      }
+    };
+
+    const _baseRenderAll = renderAll;
+    renderAll = function() {
+      _baseRenderAll();
+      updateNotificationBell();
+      renderFollowingRightRail();
+      renderNotificationsDropdown();
+    };
+
+    document.addEventListener('click', function(event) {
+      const dropdown = document.getElementById('notificationsDropdown');
+      const bell = document.getElementById('notificationsBellBtn');
+      if (!dropdown || !bell) return;
+      if (!dropdown.contains(event.target) && !bell.contains(event.target)) {
+        dropdown.classList.remove('active');
+      }
+    });
+
+    const bellButton = document.getElementById('notificationsBellBtn');
+    if (bellButton) {
+      bellButton.onclick = function(event) {
+        toggleNotificationsDropdown(event);
+      };
+    }
+
+    bindCleanPostFormHandler();
+</script>
 </body>
 </html>
