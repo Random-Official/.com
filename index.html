@@ -1503,6 +1503,9 @@
       position: sticky;
       top: 0;
       z-index: 50;
+      max-width: 1225px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     .brand,
@@ -1513,7 +1516,7 @@
     }
 
     .search-box {
-      max-width: 760px;
+      max-width: 600px;
       margin: 0 auto;
     }
 
@@ -1597,9 +1600,11 @@
       box-shadow: none !important;
     }
 
+    /* X-sized layout */
     .layout {
       display: grid !important;
-      grid-template-columns: 260px minmax(0, 1fr) 320px;
+      grid-template-columns: 275px 600px 350px;
+      justify-content: center;
       min-height: calc(100vh - 72px);
       background: var(--app-bg);
     }
@@ -1644,13 +1649,17 @@
     .main-content,
     body.theme-dark .main-content {
       background: var(--content-bg) !important;
-      padding: 28px 24px 40px;
+      padding: 0;
       min-width: 0;
     }
 
     .main-content .page {
-      max-width: 980px;
+      width: 600px;
+      max-width: 600px;
       margin: 0 auto;
+      border-left: 1px solid #2f3138;
+      border-right: 1px solid #2f3138;
+      min-height: calc(100vh - 72px);
     }
 
     .page-title,
@@ -1669,6 +1678,7 @@
       font-size: 34px;
       margin-bottom: 6px;
       letter-spacing: -0.03em;
+      padding: 24px 20px 0;
     }
 
     .page-subtitle,
@@ -1732,7 +1742,7 @@
     .feed-grid {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 0;
     }
 
     .post-card-shell .card,
@@ -1741,6 +1751,11 @@
     #followingContainer > .card,
     #profileContent > .card {
       width: 100%;
+      border-radius: 0 !important;
+      border-left: none !important;
+      border-right: none !important;
+      border-top: none !important;
+      margin: 0;
     }
 
     .post-name,
@@ -2009,26 +2024,52 @@
     }
 
     @media (max-width: 1280px) {
+      .topbar,
+      body.theme-dark .topbar {
+        max-width: 1008px;
+      }
+
       .layout {
-        grid-template-columns: 230px minmax(0, 1fr) 280px;
+        grid-template-columns: 88px 600px 320px;
+      }
+
+      .brand {
+        display: none;
+      }
+
+      .sidebar .nav-item {
+        text-align: center;
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+      .sidebar .post-btn {
+        padding-left: 8px;
+        padding-right: 8px;
       }
     }
 
-    @media (max-width: 980px) {
+    @media (max-width: 1024px) {
+      .topbar,
+      body.theme-dark .topbar {
+        max-width: 688px;
+      }
+
       .layout {
-        grid-template-columns: 220px minmax(0, 1fr);
+        grid-template-columns: 88px 600px;
       }
 
       .right-sidebar {
         display: none;
       }
-
-      .main-content .page {
-        max-width: 100%;
-      }
     }
 
     @media (max-width: 700px) {
+      .topbar,
+      body.theme-dark .topbar {
+        max-width: 100%;
+      }
+
       .layout {
         grid-template-columns: 1fr;
       }
@@ -2050,12 +2091,15 @@
         max-width: 100%;
       }
 
-      .main-content {
-        padding: 20px 14px 32px;
+      .main-content .page {
+        width: 100%;
+        max-width: 100%;
+        border-left: none;
+        border-right: none;
+        min-height: auto;
       }
     }
-
-  </style>
+</style>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -2499,20 +2543,8 @@
     }
 
     function showPage(pageId, clickedItem) {
-      const pageMap = {
-        home: "home.html",
-        explore: "explore.html",
-        following: "following.html",
-        notifications: "notifications.html",
-        profile: "profile.html",
-        settings: "settings.html"
-      };
       if (pageId === "profile" && currentUser) {
         viewedProfileId = currentUser.id;
-      }
-      if (pageMap[pageId]) {
-        window.location.href = pageMap[pageId];
-        return;
       }
       document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
       document.querySelectorAll(".nav-item").forEach(item => item.classList.remove("active"));
