@@ -2115,6 +2115,365 @@
         min-height: auto;
       }
     }
+
+
+    /* ===== modern profile + expanded settings ===== */
+    .profile-shell {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .profile-hero {
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(16,163,127,0.18), rgba(64,65,79,0.92));
+      box-shadow: var(--shadow);
+    }
+
+    .profile-banner {
+      height: 170px;
+      background:
+        radial-gradient(circle at top left, rgba(125,180,255,0.32), transparent 35%),
+        radial-gradient(circle at top right, rgba(16,163,127,0.28), transparent 30%),
+        linear-gradient(135deg, #2f3037 0%, #202123 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .profile-hero-body {
+      padding: 0 22px 22px;
+      margin-top: -54px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .profile-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .profile-avatar.profile-avatar-xl {
+      width: 112px;
+      height: 112px;
+      font-size: 34px;
+      border: 4px solid #202123;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.24);
+      background: #565869 !important;
+    }
+
+    .profile-name-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .profile-headline {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+
+    .profile-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .profile-meta-pill,
+    .profile-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .profile-badge {
+      background: rgba(16,163,127,0.18);
+      border-color: rgba(16,163,127,0.28);
+    }
+
+    .profile-action-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .profile-cta,
+    .profile-secondary-btn {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .profile-cta {
+      background: var(--accent);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .profile-cta:hover { background: var(--accent-hover); }
+
+    .profile-secondary-btn {
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+    }
+
+    .profile-secondary-btn:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: #5b5e6d;
+    }
+
+    .profile-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .profile-stat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .profile-stat-value {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .profile-stat-label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .profile-overview-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+    }
+
+    .profile-panel {
+      background: #343541;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .profile-panel h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .profile-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .profile-list strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .profile-link-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .profile-link-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.07);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .profile-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .profile-tab {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: default;
+    }
+
+    .profile-tab.active {
+      background: rgba(16,163,127,0.16);
+      border-color: rgba(16,163,127,0.30);
+    }
+
+    .profile-feed-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .settings-section-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .settings-option .settings-option-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .settings-option .settings-kicker {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .settings-helper {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .settings-select-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .accent-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .accent-chip {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,0.14);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .accent-chip.active::after {
+      content: '';
+      position: absolute;
+      inset: 7px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,0.92);
+    }
+
+    .appearance-preview {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(255,255,255,0.04);
+      margin-top: 10px;
+    }
+
+    .appearance-preview-bar {
+      height: 9px;
+      width: 42%;
+      border-radius: 999px;
+      background: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .appearance-preview-card {
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    body.compact-mode .card,
+    body.compact-mode .profile-panel,
+    body.compact-mode .settings-option,
+    body.compact-mode .post-actions {
+      padding: 14px !important;
+    }
+
+    body.larger-text {
+      font-size: 17px;
+    }
+
+    body.high-contrast {
+      --app-bg: #111214;
+      --panel: #1b1d22;
+      --panel-2: #23262d;
+      --panel-3: #2d313a;
+      --border: #6b7280;
+      --text: #ffffff;
+      --muted: #d1d5db;
+    }
+
+    body.reduce-motion *,
+    body.reduce-motion *::before,
+    body.reduce-motion *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+
+    @media (max-width: 900px) {
+      .profile-stat-grid,
+      .profile-overview-grid,
+      .settings-section-grid,
+      .settings-select-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
 </style>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -2140,11 +2499,11 @@
 
   <div class="layout">
     <aside class="sidebar">
-      <div class="nav-item active" data-page="home" onclick="window.location.href=\'home.html\'">Home</div>
-      <div class="nav-item" data-page="explore" onclick="window.location.href=\'explore.html\'">Explore</div>
-      <div class="nav-item" data-page="following" onclick="window.location.href=\'following.html\'">Following</div>
-      <div class="nav-item" data-page="profile" onclick="window.location.href=\'profile.html\'">Profile</div>
-      <div class="nav-item" data-page="settings" onclick="window.location.href=\'settings.html\'">Settings</div>
+      <div class="nav-item active" data-page="home" onclick="showPage('home', this)">Home</div>
+      <div class="nav-item" data-page="explore" onclick="showPage('explore', this)">Explore</div>
+      <div class="nav-item" data-page="following" onclick="showPage('following', this)">Following</div>
+      <div class="nav-item" data-page="profile" onclick="showPage('profile', this)">Profile</div>
+      <div class="nav-item" data-page="settings" onclick="showPage('settings', this)">Settings</div>
       <button class="post-btn" onclick="openCreatePostModal()">New post</button>
     </aside>
 
@@ -2193,22 +2552,71 @@
       <section class="page" id="profile">
         <div class="page-title">Profile</div>
         <div class="page-subtitle">Your public profile and activity.</div>
-        <div class="profile-header">
-          <div class="profile-row">
-            <div class="profile-avatar" id="profileAvatar">G</div>
-            <div>
-              <div class="profile-name" id="profileName">Guest</div>
-              <div class="profile-handle" id="profileHandle">@guest</div>
-              <div class="profile-bio" id="profileBio">Add a bio in settings.</div>
-              <div class="profile-stats">
-                <div class="chip"><span id="profilePostCount">0</span> Posts</div>
-                <div class="chip"><span id="profileFollowingCount">0</span> Following</div>
-                <div class="chip"><span id="profileFollowerCount">0</span> Followers</div>
+        <div class="profile-shell">
+          <div class="profile-hero">
+            <div class="profile-banner"></div>
+            <div class="profile-hero-body">
+              <div class="profile-top-row">
+                <div class="profile-row">
+                  <div class="profile-avatar profile-avatar-xl" id="profileAvatar">G</div>
+                  <div>
+                    <div class="profile-name-row">
+                      <div class="profile-name" id="profileName">Guest</div>
+                      <div class="profile-badge" id="profileBadge">New here</div>
+                    </div>
+                    <div class="profile-handle" id="profileHandle">@guest</div>
+                    <div class="profile-bio" id="profileBio">Add a bio in settings.</div>
+                    <div class="profile-headline" id="profileHeadline">Customize your tagline, status, and creator style in settings.</div>
+                    <div class="profile-meta-row" id="profileMetaRow"></div>
+                  </div>
+                </div>
+                <div class="profile-action-row">
+                  <button class="profile-cta" onclick="showPage('settings', document.querySelector('.nav-item[data-page='settings']'))">Edit profile</button>
+                  <button class="profile-secondary-btn" onclick="window.scrollTo({ top: document.getElementById('profileContent').offsetTop - 90, behavior: 'smooth' })">View posts</button>
+                </div>
+              </div>
+
+              <div class="profile-stat-grid">
+                <div class="profile-stat-card">
+                  <div class="profile-stat-value" id="profilePostCount">0</div>
+                  <div class="profile-stat-label">Posts shared</div>
+                </div>
+                <div class="profile-stat-card">
+                  <div class="profile-stat-value" id="profileFollowingCount">0</div>
+                  <div class="profile-stat-label">Following</div>
+                </div>
+                <div class="profile-stat-card">
+                  <div class="profile-stat-value" id="profileFollowerCount">0</div>
+                  <div class="profile-stat-label">Followers</div>
+                </div>
+                <div class="profile-stat-card">
+                  <div class="profile-stat-value" id="profilePinnedCount">0</div>
+                  <div class="profile-stat-label">Pinned posts</div>
+                </div>
               </div>
             </div>
           </div>
+
+          <div class="profile-overview-grid">
+            <div class="profile-panel">
+              <h3>About this profile</h3>
+              <div class="profile-list" id="profileAboutList"></div>
+            </div>
+            <div class="profile-panel">
+              <h3>Links & highlights</h3>
+              <div class="profile-link-list" id="profileLinks"></div>
+            </div>
+          </div>
+
+          <div class="profile-feed-wrap">
+            <div class="profile-tabs">
+              <button class="profile-tab active">Posts</button>
+              <button class="profile-tab">Pinned</button>
+              <button class="profile-tab">Media</button>
+            </div>
+            <div id="profileContent" class="feed-grid"></div>
+          </div>
         </div>
-                <div id="profileContent" class="feed-grid"></div>
       </section>
 
       <section class="page" id="settings">
@@ -2219,9 +2627,12 @@
             <input id="settingsSearch" class="settings-search" type="text" placeholder="Search settings" oninput="filterSettingsMenu()" />
             <div class="settings-nav-list" id="settingsNavList">
               <button class="settings-nav-item active" data-settings-section="account" onclick="setSettingsSection('account', this)">Account Info</button>
+              <button class="settings-nav-item" data-settings-section="appearance" onclick="setSettingsSection('appearance', this)">Appearance</button>
               <button class="settings-nav-item" data-settings-section="security" onclick="setSettingsSection('security', this)">Security</button>
-              <button class="settings-nav-item" data-settings-section="privacy" onclick="setSettingsSection('privacy', this)">Privacy &amp; content restrictions</button>
+              <button class="settings-nav-item" data-settings-section="privacy" onclick="setSettingsSection('privacy', this)">Privacy &amp; content</button>
               <button class="settings-nav-item" data-settings-section="notifications" onclick="setSettingsSection('notifications', this)">Notifications</button>
+              <button class="settings-nav-item" data-settings-section="creator" onclick="setSettingsSection('creator', this)">Creator tools</button>
+              <button class="settings-nav-item" data-settings-section="accessibility" onclick="setSettingsSection('accessibility', this)">Accessibility</button>
             </div>
           </div>
           <div class="settings-panel" id="settingsDetailPanel"></div>
@@ -3214,12 +3625,29 @@
         youtube: '',
         twitch: '',
         kick: '',
+        pronouns: '',
+        status: '',
+        tagline: '',
+        occupation: '',
+        creatorCategory: '',
+        profileAccent: 'green',
+        profileLayout: 'modern',
         accountPrivate: false,
         allowMessages: false,
+        allowTagging: true,
         showSensitive: false,
+        linkVisibility: true,
         notifyPosts: false,
         notifyFollows: false,
         notifyReplies: false,
+        notifyMentions: true,
+        notifyMarketing: false,
+        creatorMode: false,
+        autoPlayMedia: true,
+        compactMode: false,
+        highContrast: false,
+        reduceMotion: false,
+        largerText: false,
         theme: 'system'
       };
     }
@@ -3240,94 +3668,197 @@
       const youtubeValue = settings.youtube || '';
       const twitchValue = settings.twitch || '';
       const kickValue = settings.kick || '';
+      const pronounsValue = settings.pronouns || '';
+      const statusValue = settings.status || '';
+      const taglineValue = settings.tagline || '';
+      const occupationValue = settings.occupation || '';
+      const creatorCategoryValue = settings.creatorCategory || '';
+      const accentValue = settings.profileAccent || 'green';
+      const compactValue = !!settings.compactMode;
+      const reduceMotionValue = !!settings.reduceMotion;
+      const highContrastValue = !!settings.highContrast;
+      const largerTextValue = !!settings.largerText;
+
+      const accentChip = (value, color) => `<button type="button" class="accent-chip ${accentValue === value ? 'active' : ''}" style="background:${color};" onclick="selectAccentChip('${value}', this)"></button>`;
 
       const sections = {
         account: {
           title: 'Account Info',
-          subtitle: 'Manage your profile details, contact info, and linked socials.',
+          subtitle: 'Modernize your public profile with extra details, links, and creator identity.',
           body: `
             <div class="settings-card-list">
               <div class="settings-option">
-                <h4>Profile details</h4>
-                <label for="settingsDisplayName">Display name</label>
-                <input id="settingsDisplayName" type="text" placeholder="Your display name" value="${escapeAttribute(usernameValue)}" />
-                <label for="settingsUsername" style="margin-top:14px; display:block;">Username</label>
-                <input id="settingsUsername" type="text" placeholder="Username" value="${escapeAttribute(usernameValue)}" />
+                <div class="settings-kicker">Profile</div>
+                <h4>Public identity</h4>
+                <div class="settings-select-grid">
+                  <div>
+                    <label for="settingsDisplayName">Display name</label>
+                    <input id="settingsDisplayName" type="text" placeholder="Your display name" value="${escapeAttribute(usernameValue)}" />
+                  </div>
+                  <div>
+                    <label for="settingsUsername">Username</label>
+                    <input id="settingsUsername" type="text" placeholder="Username" value="${escapeAttribute(usernameValue)}" />
+                  </div>
+                </div>
                 <label for="settingsBio" style="margin-top:14px; display:block;">Bio</label>
                 <textarea id="settingsBio" placeholder="Tell people about yourself">${escapeHtml(bioValue)}</textarea>
+                <div class="settings-select-grid" style="margin-top:14px;">
+                  <div>
+                    <label for="settingsPronouns">Pronouns</label>
+                    <input id="settingsPronouns" type="text" placeholder="e.g. he/him" value="${escapeAttribute(pronounsValue)}" />
+                  </div>
+                  <div>
+                    <label for="settingsStatus">Status</label>
+                    <input id="settingsStatusText" type="text" placeholder="What are you up to?" value="${escapeAttribute(statusValue)}" />
+                  </div>
+                </div>
+                <label for="settingsTagline" style="margin-top:14px; display:block;">Headline / tagline</label>
+                <input id="settingsTagline" type="text" placeholder="Short line under your bio" value="${escapeAttribute(taglineValue)}" />
+                <label for="settingsOccupation" style="margin-top:14px; display:block;">Role or occupation</label>
+                <input id="settingsOccupation" type="text" placeholder="Creator, Designer, Developer..." value="${escapeAttribute(occupationValue)}" />
                 <label for="settingsAvatarUpload" style="margin-top:14px; display:block;">Profile photo</label>
                 <input id="settingsAvatarUpload" type="file" accept="image/*" />
               </div>
+
               <div class="settings-option">
+                <div class="settings-kicker">Contact</div>
                 <h4>Account information</h4>
-                <label for="settingsPhone">Phone Number</label>
-                <input id="settingsPhone" type="text" placeholder="" value="${escapeAttribute(phoneValue)}" />
-                <label for="settingsEmail" style="margin-top:14px; display:block;">Email</label>
-                <input id="settingsEmail" type="text" placeholder="" value="${escapeAttribute(emailValue)}" />
-                <label for="settingsBirthday" style="margin-top:14px; display:block;">Personal Birthday</label>
-                <input id="settingsBirthday" type="text" placeholder="" value="${escapeAttribute(birthdayValue)}" />
-                <label for="settingsGender" style="margin-top:14px; display:block;">Gender (Optional)</label>
-                <select id="settingsGender">
-                  <option value="" ${genderValue === '' ? 'selected' : ''}>Prefer not to say</option>
-                  <option value="Male" ${genderValue === 'Male' ? 'selected' : ''}>Male</option>
-                  <option value="Female" ${genderValue === 'Female' ? 'selected' : ''}>Female</option>
-                  <option value="Non-binary" ${genderValue === 'Non-binary' ? 'selected' : ''}>Non-binary</option>
-                </select>
-                <label for="settingsLanguage" style="margin-top:14px; display:block;">Language</label>
-                <select id="settingsLanguage">
-                  <option value="" ${languageValue === '' ? 'selected' : ''}>Select language</option>
-                  <option ${languageValue === 'English' ? 'selected' : ''}>English</option>
-                  <option ${languageValue === 'Spanish' ? 'selected' : ''}>Spanish</option>
-                </select>
-                <label for="settingsLocation" style="margin-top:14px; display:block;">Account Location</label>
-                <input id="settingsLocation" type="text" placeholder="" value="${escapeAttribute(locationValue)}" />
+                <div class="settings-section-grid">
+                  <div>
+                    <label for="settingsPhone">Phone Number</label>
+                    <input id="settingsPhone" type="text" value="${escapeAttribute(phoneValue)}" />
+                  </div>
+                  <div>
+                    <label for="settingsEmail">Email</label>
+                    <input id="settingsEmail" type="text" value="${escapeAttribute(emailValue)}" />
+                  </div>
+                  <div>
+                    <label for="settingsBirthday">Birthday</label>
+                    <input id="settingsBirthday" type="text" value="${escapeAttribute(birthdayValue)}" />
+                  </div>
+                  <div>
+                    <label for="settingsGender">Gender</label>
+                    <select id="settingsGender">
+                      <option value="" ${genderValue === '' ? 'selected' : ''}>Prefer not to say</option>
+                      <option value="Male" ${genderValue === 'Male' ? 'selected' : ''}>Male</option>
+                      <option value="Female" ${genderValue === 'Female' ? 'selected' : ''}>Female</option>
+                      <option value="Non-binary" ${genderValue === 'Non-binary' ? 'selected' : ''}>Non-binary</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="settingsLanguage">Language</label>
+                    <select id="settingsLanguage">
+                      <option value="" ${languageValue === '' ? 'selected' : ''}>Select language</option>
+                      <option value="English" ${languageValue === 'English' ? 'selected' : ''}>English</option>
+                      <option value="Spanish" ${languageValue === 'Spanish' ? 'selected' : ''}>Spanish</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="settingsLocation">Location</label>
+                    <input id="settingsLocation" type="text" value="${escapeAttribute(locationValue)}" />
+                  </div>
+                </div>
                 <label for="settingsWebsite" style="margin-top:14px; display:block;">Website</label>
-                <input id="settingsWebsite" type="text" placeholder="" value="${escapeAttribute(websiteValue)}" />
+                <input id="settingsWebsite" type="text" placeholder="https://your-site.com" value="${escapeAttribute(websiteValue)}" />
               </div>
+
               <div class="settings-option">
-                <h4>Social Networks</h4>
-                <label for="settingsFacebook">Facebook</label>
-                <input id="settingsFacebook" type="text" placeholder="Facebook profile or link" value="${escapeAttribute(facebookValue)}" />
-                <label for="settingsYoutube" style="margin-top:14px; display:block;">YouTube</label>
-                <input id="settingsYoutube" type="text" placeholder="YouTube channel or link" value="${escapeAttribute(youtubeValue)}" />
-                <label for="settingsTwitch" style="margin-top:14px; display:block;">Twitch</label>
-                <input id="settingsTwitch" type="text" placeholder="Twitch username or link" value="${escapeAttribute(twitchValue)}" />
-                <label for="settingsKick" style="margin-top:14px; display:block;">Kick</label>
-                <input id="settingsKick" type="text" placeholder="Kick username or link" value="${escapeAttribute(kickValue)}" />
-                <small>You can leave any network blank until you want to add it.</small>
+                <div class="settings-kicker">Links</div>
+                <h4>Social networks</h4>
+                <div class="settings-section-grid">
+                  <div><label for="settingsFacebook">Facebook</label><input id="settingsFacebook" type="text" placeholder="Facebook profile or link" value="${escapeAttribute(facebookValue)}" /></div>
+                  <div><label for="settingsYoutube">YouTube</label><input id="settingsYoutube" type="text" placeholder="YouTube channel or link" value="${escapeAttribute(youtubeValue)}" /></div>
+                  <div><label for="settingsTwitch">Twitch</label><input id="settingsTwitch" type="text" placeholder="Twitch username or link" value="${escapeAttribute(twitchValue)}" /></div>
+                  <div><label for="settingsKick">Kick</label><input id="settingsKick" type="text" placeholder="Kick username or link" value="${escapeAttribute(kickValue)}" /></div>
+                </div>
+                <small>These appear as highlight chips on the profile when filled in.</small>
               </div>
               <button class="save-btn" onclick="saveSettings()">Save account settings</button>
             </div>`
         },
-        security: {
-          title: 'Security',
-          subtitle: 'Keep your account secure and control how you sign in.',
+        appearance: {
+          title: 'Appearance',
+          subtitle: 'Give the site and your profile a stronger identity with theme, accent, and layout controls.',
           body: `
             <div class="settings-card-list">
               <div class="settings-option">
-                <h4>Change your password</h4>
+                <div class="settings-kicker">Theme</div>
+                <h4>Look and feel</h4>
+                <div class="settings-select-grid">
+                  <div>
+                    <label for="settingsTheme">Theme mode</label>
+                    <select id="settingsTheme">
+                      <option value="system" ${settings.theme === 'system' ? 'selected' : ''}>System</option>
+                      <option value="dark" ${settings.theme === 'dark' ? 'selected' : ''}>Dark</option>
+                      <option value="light" ${settings.theme === 'light' ? 'selected' : ''}>Light</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="settingsProfileLayout">Profile style</label>
+                    <select id="settingsProfileLayout">
+                      <option value="modern" ${settings.profileLayout === 'modern' ? 'selected' : ''}>Modern card</option>
+                      <option value="clean" ${settings.profileLayout === 'clean' ? 'selected' : ''}>Clean minimal</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="settings-helper">Accent color</div>
+                <div class="accent-chip-row" id="accentChipRow">
+                  ${accentChip('green', '#10a37f')}
+                  ${accentChip('blue', '#3b82f6')}
+                  ${accentChip('purple', '#8b5cf6')}
+                  ${accentChip('pink', '#ec4899')}
+                  ${accentChip('orange', '#f97316')}
+                </div>
+                <input id="settingsProfileAccent" type="hidden" value="${escapeAttribute(accentValue)}" />
+                <div class="inline-toggle-row" style="margin-top:14px;">
+                  <label class="toggle-chip"><input id="settingsCompactMode" type="checkbox" ${compactValue ? 'checked' : ''}> Compact cards</label>
+                  <label class="toggle-chip"><input id="settingsAutoplayMedia" type="checkbox" ${settings.autoPlayMedia ? 'checked' : ''}> Auto-play media</label>
+                </div>
+                <div class="appearance-preview">
+                  <div class="appearance-preview-bar"></div>
+                  <div class="appearance-preview-card">
+                    <strong>Preview</strong>
+                    <p class="muted" style="margin-top:8px;">This updates the site theme, button accent, and profile polish.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="save-btn" onclick="saveSettings()">Save appearance settings</button>
+            </div>`
+        },
+        security: {
+          title: 'Security',
+          subtitle: 'Keep your account organized while you are still using the browser-based demo system.',
+          body: `
+            <div class="settings-card-list">
+              <div class="settings-option">
+                <div class="settings-kicker">Security</div>
+                <h4>Local account reminder</h4>
                 <label for="settingsPasswordHint">Password reminder hint</label>
                 <input id="settingsPasswordHint" type="text" placeholder="Enter a private reminder" value="${escapeAttribute(passwordHintValue)}" />
-                <small>This demo stores your account in local browser storage only.</small>
+                <small>This website still uses local browser storage for demo mode, so this is only a local hint.</small>
               </div>
               <div class="settings-option">
+                <div class="settings-kicker">Sessions</div>
                 <h4>Login activity</h4>
-                <p class="muted">Signed in on this browser. Add a backend later if you want real session management and password reset.</p>
+                <p class="muted">Signed in on this browser. Add a backend later if you want real session history and password reset.</p>
               </div>
               <button class="save-btn" onclick="saveSettings()">Save security settings</button>
             </div>`
         },
         privacy: {
-          title: 'Privacy & Content Restrictions',
-          subtitle: 'Manage who can see your account and what content settings apply to your feed.',
+          title: 'Privacy & Content',
+          subtitle: 'Control what people can do around your profile and how open your account feels.',
           body: `
             <div class="settings-card-list">
               <div class="settings-option">
-                <h4>Audience controls</h4>
+                <div class="settings-kicker">Audience</div>
+                <h4>Profile controls</h4>
                 <div class="inline-toggle-row">
                   <label class="toggle-chip"><input id="settingsPrivateAccount" type="checkbox" ${settings.accountPrivate ? 'checked' : ''}> Private account</label>
                   <label class="toggle-chip"><input id="settingsAllowMessages" type="checkbox" ${settings.allowMessages ? 'checked' : ''}> Allow messages</label>
+                  <label class="toggle-chip"><input id="settingsAllowTagging" type="checkbox" ${settings.allowTagging ? 'checked' : ''}> Allow tagging</label>
                   <label class="toggle-chip"><input id="settingsShowSensitive" type="checkbox" ${settings.showSensitive ? 'checked' : ''}> Show sensitive media</label>
+                  <label class="toggle-chip"><input id="settingsLinkVisibility" type="checkbox" ${settings.linkVisibility ? 'checked' : ''}> Show links publicly</label>
                 </div>
               </div>
               <button class="save-btn" onclick="saveSettings()">Save privacy settings</button>
@@ -3335,18 +3866,56 @@
         },
         notifications: {
           title: 'Notifications',
-          subtitle: 'Choose what alerts show up when people interact with you.',
+          subtitle: 'Choose what alerts matter most when people interact with you or your content.',
           body: `
             <div class="settings-card-list">
               <div class="settings-option">
+                <div class="settings-kicker">Alerts</div>
                 <h4>Push activity</h4>
                 <div class="inline-toggle-row">
                   <label class="toggle-chip"><input id="settingsNotifyPosts" type="checkbox" ${settings.notifyPosts ? 'checked' : ''}> New posts from following</label>
                   <label class="toggle-chip"><input id="settingsNotifyFollows" type="checkbox" ${settings.notifyFollows ? 'checked' : ''}> New followers</label>
                   <label class="toggle-chip"><input id="settingsNotifyReplies" type="checkbox" ${settings.notifyReplies ? 'checked' : ''}> Replies and likes</label>
+                  <label class="toggle-chip"><input id="settingsNotifyMentions" type="checkbox" ${settings.notifyMentions ? 'checked' : ''}> Mentions</label>
+                  <label class="toggle-chip"><input id="settingsNotifyMarketing" type="checkbox" ${settings.notifyMarketing ? 'checked' : ''}> Product updates</label>
                 </div>
               </div>
               <button class="save-btn" onclick="saveSettings()">Save notification settings</button>
+            </div>`
+        },
+        creator: {
+          title: 'Creator Tools',
+          subtitle: 'Set up your profile for streaming, posting, and showcasing what you do.',
+          body: `
+            <div class="settings-card-list">
+              <div class="settings-option">
+                <div class="settings-kicker">Creator mode</div>
+                <h4>Profile spotlight</h4>
+                <div class="inline-toggle-row">
+                  <label class="toggle-chip"><input id="settingsCreatorMode" type="checkbox" ${settings.creatorMode ? 'checked' : ''}> Enable creator mode</label>
+                </div>
+                <label for="settingsCreatorCategory" style="margin-top:14px; display:block;">Creator category</label>
+                <input id="settingsCreatorCategory" type="text" placeholder="Streamer, artist, editor, builder..." value="${escapeAttribute(creatorCategoryValue)}" />
+                <small>When creator mode is on, your profile shows a creator badge and category highlight.</small>
+              </div>
+              <button class="save-btn" onclick="saveSettings()">Save creator settings</button>
+            </div>`
+        },
+        accessibility: {
+          title: 'Accessibility',
+          subtitle: 'Make the site easier to read and more comfortable to use over time.',
+          body: `
+            <div class="settings-card-list">
+              <div class="settings-option">
+                <div class="settings-kicker">Accessibility</div>
+                <h4>Reading and motion</h4>
+                <div class="inline-toggle-row">
+                  <label class="toggle-chip"><input id="settingsReduceMotion" type="checkbox" ${reduceMotionValue ? 'checked' : ''}> Reduce motion</label>
+                  <label class="toggle-chip"><input id="settingsHighContrast" type="checkbox" ${highContrastValue ? 'checked' : ''}> High contrast</label>
+                  <label class="toggle-chip"><input id="settingsLargerText" type="checkbox" ${largerTextValue ? 'checked' : ''}> Larger text</label>
+                </div>
+              </div>
+              <button class="save-btn" onclick="saveSettings()">Save accessibility settings</button>
             </div>`
         }
       };
@@ -3377,6 +3946,13 @@
         return;
       }
       panel.innerHTML = buildSettingsDetailHtml();
+    }
+
+    function selectAccentChip(value, clickedButton) {
+      const hidden = document.getElementById('settingsProfileAccent');
+      if (hidden) hidden.value = value;
+      document.querySelectorAll('.accent-chip').forEach(chip => chip.classList.remove('active'));
+      if (clickedButton) clickedButton.classList.add('active');
     }
 
     function setSettingsSection(section, clickedButton) {
@@ -3607,16 +4183,59 @@
       `).join('');
     }
 
+    function safeExternalLink(value) {
+      const raw = String(value || '').trim();
+      if (!raw) return '';
+      return /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+    }
+
+    function buildProfileMeta(activeProfile) {
+      const settings = getUserSettingsData(activeProfile);
+      const items = [];
+      if (settings.pronouns) items.push(`<span class="profile-meta-pill">${escapeHtml(settings.pronouns)}</span>`);
+      if (settings.location) items.push(`<span class="profile-meta-pill">📍 ${escapeHtml(settings.location)}</span>`);
+      if (settings.occupation) items.push(`<span class="profile-meta-pill">💼 ${escapeHtml(settings.occupation)}</span>`);
+      if (settings.creatorMode && settings.creatorCategory) items.push(`<span class="profile-meta-pill">🎥 ${escapeHtml(settings.creatorCategory)}</span>`);
+      if (!items.length) items.push(`<span class="profile-meta-pill">Customize more profile details in settings</span>`);
+      return items.join('');
+    }
+
+    function buildProfileAbout(activeProfile, profilePosts) {
+      const settings = getUserSettingsData(activeProfile);
+      const rows = [];
+      rows.push(`<div><strong>Status</strong>${escapeHtml(settings.status || 'No status set yet.')}</div>`);
+      rows.push(`<div><strong>About</strong>${escapeHtml(activeProfile?.bio || 'Add a bio in settings to tell people what you do.')}</div>`);
+      rows.push(`<div><strong>Profile vibe</strong>${escapeHtml(settings.profileLayout === 'clean' ? 'Clean minimal' : 'Modern creator card')}</div>`);
+      rows.push(`<div><strong>Activity</strong>${profilePosts.length ? `Posted ${profilePosts.length} time${profilePosts.length === 1 ? '' : 's'} so far.` : 'No posts yet.'}</div>`);
+      return rows.join('');
+    }
+
+    function buildProfileLinks(activeProfile) {
+      const settings = getUserSettingsData(activeProfile);
+      const links = [];
+      if (settings.linkVisibility !== false && settings.website) links.push(`<a class="profile-link-chip" href="${escapeAttribute(safeExternalLink(settings.website))}" target="_blank" rel="noopener noreferrer">🌐 Website</a>`);
+      if (settings.linkVisibility !== false && settings.youtube) links.push(`<a class="profile-link-chip" href="${escapeAttribute(safeExternalLink(settings.youtube))}" target="_blank" rel="noopener noreferrer">▶ YouTube</a>`);
+      if (settings.linkVisibility !== false && settings.twitch) links.push(`<a class="profile-link-chip" href="${escapeAttribute(safeExternalLink(settings.twitch))}" target="_blank" rel="noopener noreferrer">🟣 Twitch</a>`);
+      if (settings.linkVisibility !== false && settings.kick) links.push(`<a class="profile-link-chip" href="${escapeAttribute(safeExternalLink(settings.kick))}" target="_blank" rel="noopener noreferrer">🟢 Kick</a>`);
+      if (settings.linkVisibility !== false && settings.facebook) links.push(`<a class="profile-link-chip" href="${escapeAttribute(safeExternalLink(settings.facebook))}" target="_blank" rel="noopener noreferrer">📘 Facebook</a>`);
+      if (!links.length) links.push('<div class="profile-link-chip">No public links yet</div>');
+      return links.join('');
+    }
+
     function loadProfile() {
       const users = getUsers();
       const posts = getPosts().sort((a, b) => b.createdAt - a.createdAt);
       const activeProfile = viewedProfileId ? getProfileByUserId(viewedProfileId) : (currentUser ? getProfileByUserId(currentUser.id) : null);
       const profileName = activeProfile?.username || 'Guest';
+      const settings = getUserSettingsData(activeProfile);
       const profileHandle = '@' + (profileName || 'guest').replace(/\s+/g, '').toLowerCase();
       const profileBio = activeProfile?.bio || 'Add a bio in settings.';
       const profilePosts = activeProfile ? posts.filter(post => post.userId === activeProfile.id) : [];
+      const pinnedCount = profilePosts.filter(post => post.pinnedToProfile).length;
       const followingCount = Array.isArray(activeProfile?.following) ? activeProfile.following.length : 0;
       const followerCount = activeProfile ? users.filter(user => Array.isArray(user.following) && user.following.includes(activeProfile.id)).length : 0;
+      const badgeText = settings.creatorMode ? (settings.creatorCategory || 'Creator mode') : (profilePosts.length >= 5 ? 'Active profile' : 'New here');
+      const headline = settings.tagline || settings.status || 'Customize your tagline, status, and creator style in settings.';
 
       const avatarEl = document.getElementById('profileAvatar');
       avatarEl.innerHTML = activeProfile?.avatarUrl
@@ -3625,9 +4244,15 @@
       document.getElementById('profileName').textContent = profileName;
       document.getElementById('profileHandle').textContent = profileHandle;
       document.getElementById('profileBio').textContent = profileBio;
+      document.getElementById('profileHeadline').textContent = headline;
+      document.getElementById('profileBadge').textContent = badgeText;
       document.getElementById('profilePostCount').textContent = profilePosts.length;
       document.getElementById('profileFollowingCount').textContent = followingCount;
       document.getElementById('profileFollowerCount').textContent = followerCount;
+      document.getElementById('profilePinnedCount').textContent = pinnedCount;
+      document.getElementById('profileMetaRow').innerHTML = buildProfileMeta(activeProfile);
+      document.getElementById('profileAboutList').innerHTML = buildProfileAbout(activeProfile, profilePosts);
+      document.getElementById('profileLinks').innerHTML = buildProfileLinks(activeProfile);
       renderFeed('profileContent', profilePosts, activeProfile ? 'No posts yet.' : 'Login to view your profile.');
       loadSettings();
     }
@@ -3641,11 +4266,34 @@
       return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
 
+    function getAccentPalette(name) {
+      const palette = {
+        green: { accent: '#10a37f', hover: '#14b88e' },
+        blue: { accent: '#3b82f6', hover: '#60a5fa' },
+        purple: { accent: '#8b5cf6', hover: '#a78bfa' },
+        pink: { accent: '#ec4899', hover: '#f472b6' },
+        orange: { accent: '#f97316', hover: '#fb923c' }
+      };
+      return palette[name] || palette.green;
+    }
+
+    function applyAppearancePreferences() {
+      const settings = getUserSettingsData(currentUser);
+      const palette = getAccentPalette(settings.profileAccent || 'green');
+      document.documentElement.style.setProperty('--accent', palette.accent);
+      document.documentElement.style.setProperty('--accent-hover', palette.hover);
+      document.body.classList.toggle('compact-mode', !!settings.compactMode);
+      document.body.classList.toggle('reduce-motion', !!settings.reduceMotion);
+      document.body.classList.toggle('high-contrast', !!settings.highContrast);
+      document.body.classList.toggle('larger-text', !!settings.largerText);
+    }
+
     function applyTheme() {
       const themeSetting = currentUser?.settings?.theme || 'system';
       const resolved = resolveTheme(themeSetting);
       document.body.classList.remove('theme-dark', 'theme-light');
       document.body.classList.add(`theme-${resolved}`);
+      applyAppearancePreferences();
     }
 
 
@@ -3680,12 +4328,29 @@
         youtube: document.getElementById('settingsYoutube')?.value.trim() ?? existingSettings.youtube,
         twitch: document.getElementById('settingsTwitch')?.value.trim() ?? existingSettings.twitch,
         kick: document.getElementById('settingsKick')?.value.trim() ?? existingSettings.kick,
+        pronouns: document.getElementById('settingsPronouns')?.value.trim() ?? existingSettings.pronouns,
+        status: document.getElementById('settingsStatusText')?.value.trim() ?? existingSettings.status,
+        tagline: document.getElementById('settingsTagline')?.value.trim() ?? existingSettings.tagline,
+        occupation: document.getElementById('settingsOccupation')?.value.trim() ?? existingSettings.occupation,
+        creatorCategory: document.getElementById('settingsCreatorCategory')?.value.trim() ?? existingSettings.creatorCategory,
+        profileAccent: document.getElementById('settingsProfileAccent')?.value || existingSettings.profileAccent || 'green',
+        profileLayout: document.getElementById('settingsProfileLayout')?.value || existingSettings.profileLayout || 'modern',
         accountPrivate: document.getElementById('settingsPrivateAccount')?.checked ?? existingSettings.accountPrivate,
         allowMessages: document.getElementById('settingsAllowMessages')?.checked ?? existingSettings.allowMessages,
+        allowTagging: document.getElementById('settingsAllowTagging')?.checked ?? existingSettings.allowTagging,
+        linkVisibility: document.getElementById('settingsLinkVisibility')?.checked ?? existingSettings.linkVisibility,
         showSensitive: document.getElementById('settingsShowSensitive')?.checked ?? existingSettings.showSensitive,
         notifyPosts: document.getElementById('settingsNotifyPosts')?.checked ?? existingSettings.notifyPosts,
         notifyFollows: document.getElementById('settingsNotifyFollows')?.checked ?? existingSettings.notifyFollows,
         notifyReplies: document.getElementById('settingsNotifyReplies')?.checked ?? existingSettings.notifyReplies,
+        notifyMentions: document.getElementById('settingsNotifyMentions')?.checked ?? existingSettings.notifyMentions,
+        notifyMarketing: document.getElementById('settingsNotifyMarketing')?.checked ?? existingSettings.notifyMarketing,
+        creatorMode: document.getElementById('settingsCreatorMode')?.checked ?? existingSettings.creatorMode,
+        autoPlayMedia: document.getElementById('settingsAutoplayMedia')?.checked ?? existingSettings.autoPlayMedia,
+        compactMode: document.getElementById('settingsCompactMode')?.checked ?? existingSettings.compactMode,
+        highContrast: document.getElementById('settingsHighContrast')?.checked ?? existingSettings.highContrast,
+        reduceMotion: document.getElementById('settingsReduceMotion')?.checked ?? existingSettings.reduceMotion,
+        largerText: document.getElementById('settingsLargerText')?.checked ?? existingSettings.largerText,
         theme: document.getElementById('settingsTheme')?.value || existingSettings.theme || 'system'
       };
 
@@ -3719,7 +4384,7 @@
         }
       });
       savePosts(posts);
-      setStatus('settingsStatus', 'Settings saved.');
+      setStatus('settingsStatus', 'Settings saved. Your profile look has been updated.');
       renderAll();
       renderSettingsDetails();
     }
@@ -5041,6 +5706,14 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       if (!dropdown.contains(event.target) && !bell.contains(event.target)) {
         closeNotificationsDropdown();
       }
+    });
+
+    document.querySelectorAll('.sidebar .nav-item[data-page]').forEach(function(item) {
+      item.addEventListener('click', function(event) {
+        event.preventDefault();
+        const pageId = item.getAttribute('data-page');
+        if (pageId) showPage(pageId, item);
+      });
     });
 
     document.addEventListener('DOMContentLoaded', function() {
