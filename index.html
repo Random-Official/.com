@@ -4894,28 +4894,36 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       }
     });
 
-    document.getElementById('forgotPasswordBtn').addEventListener('click', async function() {
-      clearStatusMessages();
-      const email = document.getElementById('loginEmail').value.trim().toLowerCase();
-      if (!email) {
-        setStatus('loginStatus', 'Enter your email first, then tap Forgot password.', true);
-        return;
-      }
-      if (!supabaseClient) {
-        setStatus('loginStatus', 'Password reset needs Supabase auth to be configured first.', true);
-        return;
-      }
-      try {
-        const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-          redirectTo: window.location.href
-        });
-        if (error) throw error;
-        setStatus('loginStatus', 'Password reset email sent. Check your inbox and spam folder.');
-      } catch (error) {
-        console.error(error);
-        setStatus('loginStatus', error.message || 'Could not send password reset email.', true);
-      }
+    
+document.getElementById('forgotPasswordBtn').addEventListener('click', async function() {
+  clearStatusMessages();
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  if (!email) {
+    setStatus('loginStatus', 'Enter your email first, then tap Forgot password.', true);
+    return;
+  }
+  if (!supabaseClient) {
+    const users = getUsers();
+    const user = users.find(u => (u.email || '').toLowerCase() === email);
+    if (!user) {
+      setStatus('loginStatus', 'We could not find that account on this browser.', true);
+      return;
+    }
+    window.location.href = `reset-password.html?mode=local&email=${encodeURIComponent(email)}`;
+    return;
+  }
+  try {
+    const redirectTo = new URL('reset-password.html?reset=1', window.location.href).toString();
+    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+      redirectTo
     });
+    if (error) throw error;
+    setStatus('loginStatus', 'Password reset email sent. Check your inbox and spam folder.');
+  } catch (error) {
+    console.error(error);
+    setStatus('loginStatus', error.message || 'Could not send password reset email.', true);
+  }
+});
 
     document.getElementById('logoutBtn').addEventListener('click', function() {
       currentUser = null;
