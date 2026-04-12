@@ -1343,6 +1343,22 @@
       });
     }
 
+    function canUserSeePost(post, viewer) {
+      if (!post) return false;
+      const visibility = (post.visibility || post.audience || 'public').toLowerCase();
+      if (!post.userId) return true;
+      if (visibility === 'private' || visibility === 'onlyme') {
+        return Boolean(viewer && viewer.id === post.userId);
+      }
+      if (visibility === 'followers' || visibility === 'following') {
+        if (!viewer) return false;
+        if (viewer.id === post.userId) return true;
+        const followingIds = Array.isArray(viewer.following) ? viewer.following : [];
+        return followingIds.includes(post.userId);
+      }
+      return true;
+    }
+
     function getFilteredPosts() {
       const query = document.getElementById("globalSearch").value.trim().toLowerCase();
       const posts = getPosts()
@@ -2560,6 +2576,13 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
         savePosts(posts);
         if (composerDraftId) deleteComposerDraft(composerDraftId);
         clearComposerState();
+        const searchInput = document.getElementById('globalSearch');
+        if (searchInput) searchInput.value = '';
+        const searchDropdown = document.getElementById('globalSearchDropdown');
+        if (searchDropdown) {
+          searchDropdown.classList.remove('active');
+          searchDropdown.innerHTML = '';
+        }
         closeModal('postModal');
         renderAll();
         const homeButton = document.querySelector('.nav-item[data-page="home"]');
