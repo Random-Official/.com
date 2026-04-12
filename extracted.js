@@ -1,11 +1,10 @@
 
-    window.RANDOM_SUPABASE_URL = "https://stjupyawilpcojibfldp.supabase.co";
-    window.RANDOM_SUPABASE_ANON_KEY = "sb_publishable_n9clw1rkeiAQRKffFI5bWg_QyQZe8jz";
-  
-
     let currentUser = null;
     let editingPostId = null;
     let editingPostImageUrl = "";
+    let editingPostMediaType = "";
+    let editingPostExpiresAt = null;
+    let editingPostMediaDurationSeconds = null;
     let exploreFilter = "all";
     let viewedProfileId = null;
     let activeSettingsSection = "account";
@@ -63,7 +62,7 @@
 
     function getPosts() {
       const posts = JSON.parse(localStorage.getItem("random_posts")) || [];
-      return posts.filter(post => !post.system);
+      return pruneExpiredVideoPosts(posts).filter(post => !post.system);
     }
 
     async function pushPostsToBackend(posts) {
@@ -84,9 +83,32 @@
       if (error) console.error('posts upsert failed', error);
     }
 
+    async function deletePostsFromBackend(postIds) {
+      if (!supabaseClient || !backendReady || !Array.isArray(postIds) || !postIds.length) return;
+      const ids = postIds.map(id => String(id));
+      const { error } = await supabaseClient.from('posts').delete().in('id', ids);
+      if (error) console.error('posts delete failed', error);
+    }
+
+    function pruneExpiredVideoPosts(posts, persist = true) {
+      const list = Array.isArray(posts) ? [...posts] : [];
+      const now = Date.now();
+      const expiredIds = list
+        .filter(post => post && post.mediaType === 'video' && Number(post.expiresAt || 0) > 0 && Number(post.expiresAt) <= now)
+        .map(post => post.id);
+      if (!expiredIds.length) return list;
+      const filtered = list.filter(post => !expiredIds.includes(post.id));
+      if (persist) {
+        localStorage.setItem('random_posts', JSON.stringify(filtered));
+        deletePostsFromBackend(expiredIds);
+      }
+      return filtered;
+    }
+
     function savePosts(posts) {
-      localStorage.setItem("random_posts", JSON.stringify(posts));
-      pushPostsToBackend(posts);
+      const cleaned = pruneExpiredVideoPosts(posts, false);
+      localStorage.setItem("random_posts", JSON.stringify(cleaned));
+      pushPostsToBackend(cleaned);
     }
 
     function getCurrentUser() {
@@ -135,7 +157,7 @@
         localStorage.setItem('random_users', JSON.stringify(users));
       }
       if (Array.isArray(postRows)) {
-        const posts = postRows.map(row => ({ ...(row.post_data || {}), id: Number(row.id) || row.id, userId: Number(row.user_id) || row.user_id, imageUrl: row.image_url || (row.post_data || {}).imageUrl || '', hashtags: row.hashtags || (row.post_data || {}).hashtags || [], category: row.category || (row.post_data || {}).category || 'general', createdAt: Number(row.created_at_ms) || (row.post_data || {}).createdAt || Date.now() }));
+        const posts = postRows.map(row => ({ ...(row.post_data || {}), id: Number(row.id) || row.id, userId: Number(row.user_id) || row.user_id, imageUrl: row.image_url || (row.post_data || {}).imageUrl || '', mediaType: (row.post_data || {}).mediaType || ((row.image_url || '').startsWith('data:video') ? 'video' : ((row.image_url || (row.post_data || {}).imageUrl) ? 'image' : '')), expiresAt: (row.post_data || {}).expiresAt || null, mediaDurationSeconds: (row.post_data || {}).mediaDurationSeconds || null, hashtags: row.hashtags || (row.post_data || {}).hashtags || [], category: row.category || (row.post_data || {}).category || 'general', createdAt: Number(row.created_at_ms) || (row.post_data || {}).createdAt || Date.now() }));
         localStorage.setItem('random_posts', JSON.stringify(posts));
       }
       backendReady = true;
@@ -1871,10 +1893,19 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
         alert('You need to be logged in.');
         return;
       }
-      const confirmed = confirm('Are you sure you want to delete this post?');
+      const posts = getPosts();
+      const target = posts.find(post => post.id === id && post.userId === currentUser.id);
+      if (!target) {
+        alert('You can only delete your own post.');
+        return;
+      }
+      const confirmed = confirm('Are you sure you want to delete this post everywhere?');
       if (!confirmed) return;
-      const posts = getPosts().filter(post => !(post.id === id && post.userId === currentUser.id));
-      savePosts(posts);
+      const remainingPosts = posts.filter(post => post.id !== id);
+      savePosts(remainingPosts);
+      deletePostsFromBackend([id]);
+      replyOpenState[id] = false;
+      closeAllPostMenus();
       renderAll();
     }
 
@@ -1888,6 +1919,9 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       if (!post) return;
       editingPostId = post.id;
       editingPostImageUrl = post.imageUrl || '';
+      editingPostMediaType = post.mediaType || (post.imageUrl ? 'image' : '');
+      editingPostExpiresAt = post.expiresAt || null;
+      editingPostMediaDurationSeconds = post.mediaDurationSeconds || null;
       document.getElementById('postModalTitle').textContent = 'Edit Post';
       document.getElementById('postSubmitBtn').textContent = 'Save Changes';
       document.getElementById('postContent').value = post.content || '';
@@ -1905,6 +1939,9 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       }
       editingPostId = null;
       editingPostImageUrl = '';
+      editingPostMediaType = '';
+      editingPostExpiresAt = null;
+      editingPostMediaDurationSeconds = null;
       document.getElementById('postModalTitle').textContent = 'Create Post';
       document.getElementById('postSubmitBtn').textContent = 'Publish Post';
       document.getElementById('postContent').value = '';
@@ -2244,7 +2281,7 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       localStorage.setItem(getDraftStorageKey(), JSON.stringify(drafts.slice(0, 25)));
     }
 
-    function triggerPostImagePicker() {
+    function triggerPostMediaPicker() {
       document.getElementById('postImage')?.click();
     }
 
@@ -2305,15 +2342,22 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
         return;
       }
       const content = document.getElementById('postContent')?.value.trim() || '';
-      const imageFile = document.getElementById('postImage')?.files?.[0];
+      const mediaFile = document.getElementById('postImage')?.files?.[0];
       const replyPermission = document.getElementById('postReplyPermission')?.value || 'everyone';
-      let imageUrl = editingPostImageUrl || '';
-      if (imageFile) imageUrl = await fileToBase64(imageFile);
+      const media = await getComposerMediaPayload(mediaFile, {
+        imageUrl: editingPostImageUrl || '',
+        mediaType: editingPostMediaType || '',
+        expiresAt: editingPostExpiresAt,
+        mediaDurationSeconds: editingPostMediaDurationSeconds
+      });
       const drafts = getDrafts();
       const payload = {
         id: composerDraftId || makeId(),
         content,
-        imageUrl,
+        imageUrl: media.imageUrl,
+        mediaType: media.mediaType,
+        expiresAt: media.expiresAt,
+        mediaDurationSeconds: media.mediaDurationSeconds,
         replyPermission,
         notifyFollowers: composerNotifyFollowers,
         updatedAt: Date.now()
@@ -2321,6 +2365,10 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       const idx = drafts.findIndex(d => d.id === payload.id);
       if (idx >= 0) drafts[idx] = payload; else drafts.unshift(payload);
       composerDraftId = payload.id;
+      editingPostImageUrl = media.imageUrl;
+      editingPostMediaType = media.mediaType;
+      editingPostExpiresAt = media.expiresAt;
+      editingPostMediaDurationSeconds = media.mediaDurationSeconds;
       saveDrafts(drafts.sort((a,b)=>b.updatedAt-a.updatedAt));
       loadDraftsList();
       setStatus('postStatus', 'Draft saved.');
@@ -2332,6 +2380,9 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       composerDraftId = draft.id;
       editingPostId = null;
       editingPostImageUrl = draft.imageUrl || '';
+      editingPostMediaType = draft.mediaType || (draft.imageUrl ? 'image' : '');
+      editingPostExpiresAt = draft.expiresAt || null;
+      editingPostMediaDurationSeconds = draft.mediaDurationSeconds || null;
       document.getElementById('postModalTitle').textContent = 'Draft';
       document.getElementById('postSubmitBtn').textContent = 'Publish Post';
       document.getElementById('postContent').value = draft.content || '';
@@ -2353,6 +2404,9 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       composerDraftId = null;
       editingPostId = null;
       editingPostImageUrl = '';
+      editingPostMediaType = '';
+      editingPostExpiresAt = null;
+      editingPostMediaDurationSeconds = null;
       document.getElementById('postModalTitle').textContent = 'Create Post';
       document.getElementById('postSubmitBtn').textContent = 'Publish Post';
       document.getElementById('postContent').value = '';
@@ -2386,6 +2440,9 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       composerDraftId = null;
       editingPostId = post.id;
       editingPostImageUrl = post.imageUrl || '';
+      editingPostMediaType = post.mediaType || (post.imageUrl ? 'image' : '');
+      editingPostExpiresAt = post.expiresAt || null;
+      editingPostMediaDurationSeconds = post.mediaDurationSeconds || null;
       document.getElementById('postModalTitle').textContent = 'Edit Post';
       document.getElementById('postSubmitBtn').textContent = 'Save Changes';
       document.getElementById('postContent').value = post.content || '';
@@ -2437,9 +2494,9 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
           ${followButton}
         </div>
         <div class="post-content">${renderRichText(post.content)}</div>
-        ${post.imageUrl ? `<img class="post-image" src="${post.imageUrl}" alt="Post image">` : ''}
+        ${renderPostMedia(post)}
         ${buildPollHtml(post)}
-        <div class="post-meta">${post.category ? `${escapeHtml(post.category)}` : 'Post'}${post.hashtags?.length ? ` · ${post.hashtags.map(tag => escapeHtml(tag)).join(' ')}` : ''}</div>
+        <div class="post-meta">${post.category ? `${escapeHtml(post.category)}` : 'Post'}${post.hashtags?.length ? ` · ${post.hashtags.map(tag => escapeHtml(tag)).join(' ')}` : ''}${getVideoExpiryText(post)}</div>
         ${post.system ? '' : `
         <div class="post-actions">
           <div class="post-actions-left">
@@ -2516,7 +2573,7 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
         return;
       }
       const content = document.getElementById('postContent').value.trim();
-      const imageFile = document.getElementById('postImage').files[0];
+      const mediaFile = document.getElementById('postImage').files[0];
       const hashtags = extractHashtags(content);
       const category = getPostCategory(content);
       const pollData = parsePollFromContent(content);
@@ -2529,14 +2586,21 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       }
       try {
         setStatus('postStatus', editingPostId ? 'Saving changes...' : 'Saving post...');
-        let imageUrl = editingPostImageUrl;
-        if (imageFile) imageUrl = await fileToBase64(imageFile);
+        const media = await getComposerMediaPayload(mediaFile, {
+          imageUrl: editingPostImageUrl,
+          mediaType: editingPostMediaType,
+          expiresAt: editingPostExpiresAt,
+          mediaDurationSeconds: editingPostMediaDurationSeconds
+        });
         const posts = getPosts();
         if (editingPostId) {
           const post = posts.find(p => p.id === editingPostId && p.userId === currentUser.id);
           if (post) {
             post.content = content;
-            post.imageUrl = imageUrl;
+            post.imageUrl = media.imageUrl;
+            post.mediaType = media.mediaType;
+            post.expiresAt = media.expiresAt;
+            post.mediaDurationSeconds = media.mediaDurationSeconds;
             post.hashtags = hashtags;
             post.category = category;
             post.replyPermission = replyPermission;
@@ -2562,7 +2626,7 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
           }
         } else {
           const newPost = {
-            id: makeId(), content, imageUrl, likes: 0, likedBy: [], replies: [], userId: currentUser.id,
+            id: makeId(), content, imageUrl: media.imageUrl, mediaType: media.mediaType, expiresAt: media.expiresAt, mediaDurationSeconds: media.mediaDurationSeconds, likes: 0, likedBy: [], replies: [], userId: currentUser.id,
             authorName: currentUser.username || currentUser.email || 'User', authorEmail: currentUser.email || '',
             category, hashtags, createdAt: Date.now(), replyPermission, replyPermissionLabel,
             poll: pollData ? { question: pollData.question, options: pollData.options, votesByUser: {} } : null
@@ -2589,7 +2653,7 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
         showPage('home', homeButton);
       } catch (error) {
         console.error(error);
-        setStatus('postStatus', 'Could not save post.', true);
+        setStatus('postStatus', error?.message || 'Could not save post.', true);
       }
     }, true);
 
@@ -2717,7 +2781,8 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
       const text = String(post.content || '').trim();
       if (text) return text.split('\n')[0].trim().slice(0, 72);
       if (post.poll) return 'posted a poll';
-      if (post.imageUrl) return 'posted a photo';
+      if (post.mediaType === 'video') return 'posted a video';
+      if (post.imageUrl) return 'posted media';
       return 'posted something new';
     }
 
