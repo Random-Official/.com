@@ -313,6 +313,11 @@
       showPage('notifications', notificationsTab);
     }
 
+    function openSettingsPageFromProfile() {
+      const settingsTab = document.querySelector('.nav-item[data-page="settings"]');
+      showPage('settings', settingsTab || null);
+    }
+
     function updateAccountUI(user) {
       const loginBtn = document.getElementById("loginOpenBtn");
       const registerBtn = document.getElementById("registerOpenBtn");
@@ -2651,7 +2656,8 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
         }
       } catch (error) {
         console.error('Boot failed', error);
-        if (!supabaseClient) seedLocalDemoState();
+        backendReady = false;
+        seedLocalDemoState();
       }
       renderAll();
     }

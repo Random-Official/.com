@@ -2571,7 +2571,7 @@
                   </div>
                 </div>
                 <div class="profile-action-row">
-                  <button class="profile-cta" onclick="showPage('settings', document.querySelector('.nav-item[data-page='settings']'))">Edit profile</button>
+                  <button class="profile-cta" onclick="openSettingsPageFromProfile()">Edit profile</button>
                   <button class="profile-secondary-btn" onclick="window.scrollTo({ top: document.getElementById('profileContent').offsetTop - 90, behavior: 'smooth' })">View posts</button>
                 </div>
               </div>
@@ -3080,6 +3080,11 @@
     function openNotificationsPage() {
       const notificationsTab = document.querySelector('.nav-item[data-page="notifications"]');
       showPage('notifications', notificationsTab);
+    }
+
+    function openSettingsPageFromProfile() {
+      const settingsTab = document.querySelector('.nav-item[data-page="settings"]');
+      showPage('settings', settingsTab || null);
     }
 
     function updateAccountUI(user) {
@@ -5420,7 +5425,8 @@ Bookmarks: ${Array.isArray(post.bookmarkedBy) ? post.bookmarkedBy.length : 0}`);
         }
       } catch (error) {
         console.error('Boot failed', error);
-        if (!supabaseClient) seedLocalDemoState();
+        backendReady = false;
+        seedLocalDemoState();
       }
       renderAll();
     }
